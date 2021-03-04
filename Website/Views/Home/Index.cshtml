@@ -1,0 +1,228 @@
+﻿@model JARVIS.Models.Model
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="~/Content/st.JPG">
+    <title>Login Page</title>
+    <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/Content/Site.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="~/Scripts/custom/login.js"></script>
+    <link rel="stylesheet" href="~/Content/index.css">
+</head>
+
+<body>
+
+    <div id="vanta-canvas">
+        <div>
+            <nav class="navbar">
+                <img src="~/Content/Starmark_Logo_252X70.png" class="companyLogo">
+            </nav>
+
+            <div class="row">
+                <div class=" test col-lg-11">
+
+                    <h1 id="heading"><i>J.A.R.V.I.S  <br /><small id="demo"></small></i></h1>
+
+                </div>
+
+                <div class="login col>
+
+                    <div class="login-form ">
+                        <div class="form">
+                            @using (Html.BeginForm(FormMethod.Post))
+                            {
+                                <div class="avatar  text-center"><i class="fas fa-user "></i></div>
+
+                                <h4 class="modal-title text-center">Login</h4>
+                                <div class="form-group">
+
+                                    <label for="UserName">User Name</label>
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control ", @placeholder = "AD Username" } })
+                                </div>
+                                <!-- <div></div> -->
+                                <label for="Password">Password</label>
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control ", @placeholder = "AD Password" } })
+                                <span id="error_msg" style="display:none;color:red;">Wrong username or password</span>
+                                <div>
+                                    <span class="field-validation-valid" data-valmsg-for="Password"
+                                          data-valmsg-replace="true"></span>
+                                </div>
+
+
+
+                                <div>
+                                    <span class="field-validation-valid" data-valmsg-for="Password"
+                                          data-valmsg-replace="true"></span>
+                                </div>
+                                <div>
+                                    <label class="field-validation-error"></label>
+                                </div>
+                                <div>
+                                    <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login" id="loginBtn" onclick="myFunction()">
+                                </div>
+                                <br />
+                                <div>
+
+
+                                    <p>Any issues, <a href="mailto:help.desk@starmarkit.com?Subject=MyTime@Starmark:Login issue" target="_top">email to MIS</a></p>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="/Scripts/custom/three.min.js"></script>
+    <script src="~/Scripts/custom/vanta.waves.min.js"></script>
+    <script src="~/Scripts/custom/vanta.birds.min.js"></script>
+    <script src="~/Scripts/custom/vanta.fog.min.js"></script>
+    <script src="~/Scripts/custom/vanta.net.min.js"></script>
+    <script src="~/Scripts/custom/vanta.clouds.min.js"></script>
+    <script src="~/Scripts/custom/vanta.clouds2.min.js"></script>
+    <script src="~/Scripts/custom/vanta.rings.min.js"></script>
+    <script src="~/Scripts/custom/vanta.ripple.min.js"></script>
+    <script src="~/Scripts/custom/vanta.dots.min.js"></script>
+    <script type="text/javascript">
+        var r = Math.floor(Math.random() * (9 - 0) + 0);
+        //   alert(r);
+        switch (r) {
+            case 0: VANTA.WAVES
+                ({
+                    el: "#vanta-canvas",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 1000.00,
+                    minWidth: 1000.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00
+                })
+                break;
+
+            case 1: VANTA.BIRDS({
+                el: "#vanta-canvas",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 1000.00,
+                minWidth: 1000.00,
+                scale: 1.00,
+                scaleMobile: 1.00
+            })
+                break;
+
+            case 2: VANTA.NET({
+                el: "#vanta-canvas",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 1000.00,
+                minWidth: 1000.00,
+                scale: 1.00,
+                scaleMobile: 1.00
+            })
+                break;
+
+
+            case 3: VANTA.CLOUDS({
+                el: "#vanta-canvas",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 1000.00,
+                minWidth: 1000.00,
+                scale: 1.00,
+                scaleMobile: 1.00
+            })
+                break;
+            case 4: VANTA.FOG
+                ({
+                    el: "#vanta-canvas",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 1000.00,
+                    minWidth: 1000.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00
+                })
+                break;
+
+            case 5: VANTA.RINGS
+                ({
+                    el: "#vanta-canvas",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 1000.00,
+                    minWidth: 1000.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00
+                })
+                break;
+
+            case 6: VANTA.CLOUDS2
+                ({
+                    el: "#vanta-canvas",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 1000.00,
+                    minWidth: 1000.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00
+                })
+                break;
+
+            case 7: VANTA.DOTS
+                ({
+                    el: "#vanta-canvas",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 1000.00,
+                    minWidth: 1000.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00
+                })
+                break;
+
+            case 8: VANTA.RIPPLE
+                ({
+                    el: "#vanta-canvas",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 1000.00,
+                    minWidth: 1000.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00
+                })
+                break;
+
+        }
+
+    </script>
+
+
+
+    @if (ViewBag.error != null)
+    {
+        <script>
+            $('#error_msg').css("display", "block");
+        </script>
+    }

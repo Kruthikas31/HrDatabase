@@ -1,0 +1,355 @@
+﻿
+@{
+    ViewBag.Title = "ITDeclaration";
+}
+
+
+@{
+    ViewBag.Title = "ITDeclaration";
+}
+
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+          rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/4f3cef309e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+
+    <style>
+        h4 {
+            margin-bottom: 40px;
+            margin-left: 40px;
+            margin-top: 20px;
+        }
+
+        .row {
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+
+        #ITtable, td {
+            border: 0;
+            padding-left: 100px;
+        }
+
+        #bt_Download {
+            /* background-color: #EE9345 47% ; */
+            /* background-image: linear-gradient(); */
+            border-radius: 20px;
+            color: white;
+            height: 35px;
+            font-size: 15px;
+            padding-bottom: 3px;
+            padding-top: 2px;
+            width: 120px;
+            border: none;
+            outline: none;
+            background: linear-gradient(#26E426, #0B420B);
+        }
+
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            height: 40px;
+            width: 1200px;
+            border: 1px solid #707070;
+            background-color: #C27B43;
+            border-radius: 18px 18px 0px 0px;
+        }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 8px;
+                transition: 0.3s;
+                font-size: 17px;
+                border-radius: 18px 18px 0px 0px;
+            }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #F8F4EE;
+                    color: #000000;
+                    /* text-decoration: underline #C27B43; */
+                    text-decoration-thickness: 2px;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border-top: none;
+            width: 1200px;
+        }
+
+        .tablinks {
+            color: #FFFFFF;
+        }
+
+        #bt_Add {
+            /* background-color: #EE9345 47% ; */
+            /* background-image: linear-gradient(); */
+            border-radius: 20px;
+            color: white;
+            height: 30px;
+            font-size: 15px;
+            padding-bottom: 3px;
+            padding-top: 2px;
+            width: 80px;
+            border: none;
+            outline: none;
+            background: linear-gradient(#EE9345, #ECA444);
+        }
+
+        #bt_Submit {
+            /* background-color: #EE9345 47% ; */
+            /* background-image: linear-gradient(); */
+            border-radius: 20px;
+            color: white;
+            height: 30px;
+            font-size: 15px;
+            padding-bottom: 3px;
+            padding-top: 2px;
+            width: 80px;
+            border: none;
+            background: linear-gradient(#26E426, #0B420B);
+        }
+    </style>
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</head>
+<body style="background-color: #F8F4EE;">
+    <div class="container" style="padding-top:9%;margin-bottom:40px;width:100%;">
+        <h4>Income Tax Declaration</h4>
+        <table id="ITtable">
+            <tr>
+                <td>
+                    <p>Employee Name</p>
+                </td>
+                <td>:</td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Employee ID</p>
+                </td>
+                <td>:</td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Financial Year</p>
+                </td>
+                <td>:</td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Income Tax Regime</p>
+                </td>
+                <td>:</td>
+                <td>
+                    <select class="custom-select d-block w-100" id="tax_regime" required>
+                        <option value="newTaxRegime" id="tax_regime">New Tax Regime</option>
+                        <option value="oldTaxRegime" id="tax_regime">Old Tax Regime</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p><button type="button" id="bt_Download">Download PDF</button></p>
+                </td>
+            </tr>
+        </table>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'tab1')" style="width:380px">Income/Loss from House Property (U/S 24)</button>
+            <button class="tablinks" onclick="openTab(event, 'tab2')" style="width:195px">Other Adjustments</button>
+            <button class="tablinks" onclick="openTab(event, 'tab3')" style="width:165px">Other Income</button>
+            <button class="tablinks" onclick="openTab(event, 'tab4')" style="width:235px">Previous Employment</button>
+            <button class="tablinks" onclick="openTab(event, 'tab5')" style="width:223px">Deduction Through Salary</button>
+        </div>
+
+        <div id="tab1" class="tabcontent" style="border:1px solid black">
+            <div>
+                <table class="table-bordered" style="width:1170px">
+                    <thead>
+                    <th>Particulars</th>
+                    <th>Amount (Rs.)</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="#">Click here to enter your details </a></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <p>Lender Details</p>
+                <button type="button" id="bt_Add">Add</button>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="lenderType">Lender Type</label>
+                </div>
+                <div class="col">
+                    <label for="lenderName">Lender Name</label>
+                </div>
+                <div class="col">
+                    <label for="lenderAddress">Lender Address</label>
+                </div>
+                <div class="col">
+                    <label for="lenderPAN">Lender PAN</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <select class="custom-select d-block w-100" id="lenderType">
+                        <option id="lenderType">--Select--</option>
+                        <option value="financialInstitute" id="lenderType">Financial Institution(s)</option>
+                        <option value="Employer" id="lenderType">Employer</option>
+                        <option value="Others" id="lenderType">Others</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" name="lenderName" id="lenderName">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" name="lenderAddress" id="lenderAddress">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" name="lenderPAN" id="lenderPAN">
+                </div>
+            </div>
+            <hr>
+            <div>
+                <button type="button" id="bt_Submit">Save</button>
+            </div>
+        </div>
+
+        <div id="tab2" class="tabcontent" style="border:1px solid black">
+            <div>
+                <table class="table-bordered" style="width:1170px">
+                    <thead>
+                    <th>Name</th>
+                    <th>Amount (Rs.)</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            <div>
+                <button type="button" id="bt_Submit">Save</button>
+            </div>
+        </div>
+
+        <div id="tab3" class="tabcontent" style="border:1px solid black">
+            <div>
+                <table class="table-bordered" style="width:1170px">
+                    <thead>
+                    <th>Particulars</th>
+                    <th>Maximum Amount (Rs.)</th>
+                    <th>Amount (Rs.)</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Other Income</td>
+                            <td>No Max Limit</td>
+                            <td><input type="number" name="amt" id="amt"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            <div>
+                <button type="button" id="bt_Submit">Save</button>
+            </div>
+        </div>
+
+        <div id="tab4" class="tabcontent" style="border:1px solid black">
+            <div>
+                <table class="table-bordered" style="width:1170px">
+                    <thead>
+                    <th>Particulars</th>
+                    <th>Amount (Rs.)</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Previous Employer - Total Salary Income (After exemption U/S 10 & 17 )</td>
+                            <td><input type="number" name="amt" id="prevEmployer_totalSal"></td>
+                        </tr>
+                        <tr>
+                            <td>Previous Employer - Professional Tax (Section 16 (iii))</td>
+                            <td><input type="number" name="amt" id="prevEmployer_profTax"></td>
+                        </tr>
+                        <tr>
+                            <td>Previous Employer - U/S 80C</td>
+                            <td><input type="number" name="amt" id="prevEmployer_U/S_80C"></td>
+                        </tr>
+                        <tr>
+                            <td>Previous Employer - Tax Paid</td>
+                            <td><input type="number" name="amt" id="prevEmployer_taxPaid"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            <div>
+                <button type="button" id="bt_Submit">Save</button>
+            </div>
+        </div>
+
+        <div id="tab5" class="tabcontent" style="border:1px solid black">
+            <div>
+                <table class="table-bordered" style="width:1170px">
+                    <thead>
+                    <th>Particulars</th>
+                    <th>Maximum Amount (Rs.)</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            <div>
+                <button type="button" id="bt_Submit">Save</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

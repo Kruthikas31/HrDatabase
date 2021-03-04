@@ -1,0 +1,128 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/sidebar")
+
+</head>
+<body>
+    <div class="bo" style="position:fixed;width:100%;">
+
+        <nav class="navbar navbar-expand-sm bg-light navbar-lg">
+            <div class="container-fluid">
+                <a href="@Url.Action("Welcome","Home")"><img class="logo" src="~/Content/starmark.png"></a>
+                <div class="abc">
+                    <button class="fa fa-bell-o fa-2x xyz" aria-hidden="true"></button>
+                    <div class="dropdown">
+                        <button class="profile"><img class="avatar" src="~/Content/profile.png"></button>
+                        <div class="dropdown-menu efg">
+                            <a class="dropdown-item" href="#">Edit Profile</a>
+                            <a class="dropdown-item disabled" href="#">Change Password</a>
+                            <a class="dropdown-item disabled" href="#">Change Theme</a>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+
+        <div class="gradient"></div>
+    </div>
+    <div class="sidenav">
+        <div class="bg ">
+            <!-- <div class="navbar"> -->
+            <div class="dropdown-btn" id="drop1">
+                <div class="icon"><i class="fa fa-address-card-o fa-2x  icon-color" aria-hidden="true"></i></div><div class="text1">
+                    MY DETAILS
+                    <i class="fa fa-caret-down"></i>
+                </div>
+            </div>
+            <div class="dropdown-container">
+                <ul>
+                    <div class="bt"><a href="#">About Me</a></div>
+                    <div class="bt">@Html.ActionLink("My Documents", "upload", "docsPrePopulatedData")</div>
+                    <div class="bt"><a href="#">Agreements</a></div>
+                </ul>
+            </div>
+
+            <div class="dropdown-btn" id="drop2">
+                <div class="icon"><i class="fas fa-suitcase fa-2x icon-color" aria-hidden="true"></i></div><div class="text1">
+                    MY COMPENSATION
+                    <i class="fa fa-caret-down"></i>
+                </div>
+            </div>
+            <div class="dropdown-container">
+                <ul>
+                    <div class="bt2">
+                        @Html.ActionLink("Bank Details", "BankDetails", "Compensation")
+                    </div>
+                    <div class="bt2">@Html.ActionLink("IT Declaration", "ITDeclaration", "Compensation")</div>
+                    <div class="bt2">@Html.ActionLink("IT Statement", "ITStatemnet", "Compensation")</div>
+                    <div class="bt2">@Html.ActionLink("Payslip", "Payslip", "Compensation")</div>
+                </ul>
+            </div>
+
+            <div class="dropdown-btn" id="drop3">
+                <div class="icon"><i class="fa fa-address-card-o fa-2x  icon-color" aria-hidden="true"></i></div><div class="text1">
+                    ADD CANDIDATE
+                    <i class="fa fa-caret-down"></i>
+                </div>
+            </div>
+            <div class="dropdown-container">
+                <ul>
+
+                    <div class="bt1">@Html.ActionLink("Invite Prospective Employee", "Tracking", "Tracking")</div>
+                    <div class="bt1">@Html.ActionLink("Add Propective Employee", "Onboard", "Onboard")</div>
+                </ul>
+            </div>
+
+            <div class="bt1">@Html.ActionLink("VIEW UPLOADED DOCUMENTS", "Hr_portal", "Fileupload")</div>
+
+        </div>
+    </div>
+
+    <div class="container body-content" style="padding-bottom:90px">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <div class="footer" style="position:fixed; top:87.5%; margin-left:15%; width:85%; ">
+            <hr />
+            <div class="foot">
+                <ol>
+                    <li><a><button id="support">Get Support</button></a></li>
+                    <li><a mailto:mrsagar2006@gmail.com?Subject=abc issue" target="_top">Send Feedback</a></li>
+                    <li>Terms of Use</li>
+                    <li>FAQ</li>
+                </ol>
+
+            </div>
+
+            <div style="background-color:white;">
+                <center> <p>&copy Starmark Software Pvt.Ltd.2021</p></center>
+
+            </div>
+        </div>
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/toastr")
+    @Scripts.Render("~/content/toastr")
+    @Scripts.Render("~/bundles/custom")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

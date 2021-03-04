@@ -1,0 +1,417 @@
+﻿<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    @*<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+        rel="stylesheet">*@
+    @*<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>*@
+    @*<script src="~/Scripts/jquery-ui-1.12.1.js"></script>*@
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.12.1.js")"></script>
+    @*<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>*@
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/4f3cef309e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" crossorigin="anonymous">
+    @*@<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />*@
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+    <style>
+        table thead tr th {
+            color: white;
+        }
+
+        center .btn {
+            margin-top: 2%;
+            border-radius: 10rem;
+        }
+
+        td .btn {
+            border-radius: 10rem;
+        }
+
+        .confirm {
+            display: none;
+            float: right;
+            background-color: #FFFFFF;
+            border: 1px solid #aaa;
+            border-radius: 10px;
+            width: auto;
+            margin-right: 180px;
+            padding: 6px 8px 8px;
+            box-sizing: border-box;
+            text-align: center;
+            position: fixed;
+            top: 60%;
+            left: 83%
+        }
+
+            .confirm button {
+                display: inline-block;
+                border-radius: 5px;
+                border: 1px solid #aaa;
+                padding: 5px;
+                text-align: center;
+                cursor: pointer;
+            }
+
+            .confirm .message {
+                text-align: left;
+            }
+
+        .displaynone {
+            display: none;
+        }
+
+        #onboard_button {
+            visibility: hidden;
+        }
+
+        .material-icons {
+            color: darkgray;
+        }
+
+        #cross {
+            float: right;
+            background-color: white;
+            border: hidden;
+        }
+
+        table tbody tr td .dateval span {
+            display: inline-block;
+        }
+
+        table th {
+            width: auto;
+        }
+
+        table {
+            white-space: nowrap;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $(".confirm").hide();
+            var aprroved_arr = [];
+            var reject_arr = [];
+            var rej_string = "";
+            var apr_string = "";
+            var id_date_arr = [];
+            var id_date_string = "";
+            var val_date_arr = [];
+            var val_date_string = [];
+            var comments_arr = [];
+            var comments_string = "";
+            var ajax_status;
+            var subject = "Update Status";
+            var email_arr = [];
+            var name_arr = [];
+            var name_string = "";
+            $("#itemlist tr td .temp").on('change', function () {
+                var checkid = $(this).attr("id").split("_");
+                if ($(this).is(":checked", true) && ($("#validate_" + checkid[2]).text() != "Yes")) {
+                    $(this).prop("checked", false);
+                    toastr.error("You have checked for non validated candidate!!!");
+                }
+            });
+            $("#itemlist tr td .temp").each(function (index, val) {
+                var iteration = $(val).attr("id");
+                var iteration_split = iteration.split("_");
+                var i = iteration_split[2];
+                //$("#check_toggle_" + i + "").on('click', { param1: i }, toggle_fun);
+                //function toggle_fun(event) {
+
+                //    $("#toggle_span_" + event.data.param1 + "").hide();
+                //    $("#bdate_span_" + event.data.param1 + "").show();
+
+                //};
+                $("#date_" + i + "").on('change', { param: i }, data_input);
+                //$("#b_date_" + i + "").on('input', { param: i }, data_input);
+                function data_input(event) {
+                    toastr.success("Date got saved!!");
+                    val_date_arr = [];
+                    //$("#bdate_span_" + event.data.param + "").hide();
+                    //$("#toggle_span_" + event.data.param + "").hide();
+                    // var date_value = $("#b_date_" + event.data.param + "").val();
+                    // var reverse_date_value = date_value.split("-").reverse().join("-");
+                    // $("#dis_date_" + event.data.param + "").text(reverse_date_value).show();;
+                    debugger
+                    var get_id = $("#date_" + event.data.param + "").attr("id").split("_");
+                    var date_value = $("#date_" + event.data.param + "").val();
+                    var id_date = get_id[1];
+                    id_date_arr.push(id_date);
+                    val_date_arr.push(date_value);
+                    // $("#onboard_button").click();
+                    if (id_date_arr.length != 0) {
+                        id_date_string = id_date_arr.toString();
+                        val_date_string = val_date_arr.toString();
+                        $.ajax({
+                            url: "/Onboard/savelist/",
+                            type: "POST",
+                            data: { date_value: val_date_string, id_for_date: id_date_string },
+                        });
+                    }
+                };
+            });
+            $("center .btn").click(function () {
+                $(".confirm").show();
+                aprroved_arr = [];
+                reject_arr = [];
+                comments_arr = [];
+                email_arr = [];
+                name_arr = [];
+                debugger
+                var val = $(this).val();
+                if (val == "Approve") {
+                    $("#itemlist tr td .temp").each(function (index, val) {
+                        var checkid = $(val).attr("id");
+                        var split_id = checkid.split("_");
+                        var id_approve = split_id[2];
+                        var email_values = $("#emailaddress_" + id_approve + "").text();
+                        var name_values = $("#name_" + id_approve + "").text();
+
+                        if ($("#" + checkid).is(":checked", true)) {
+                            $("#color_" + id_approve + "").css("color", "#00b300");
+                            aprroved_arr.push(id_approve);
+                            name_arr.push(name_values);
+                            email_arr.push(email_values);
+                            $("#ar_" + id_approve + "").text("Approved");
+                            //$("#toggle_span_" + id_approve + "").show();
+                            $("#date_span_" + id_approve + "").show();
+                            $("#date_hidden_" + id_approve + "").hide();
+                            //$("#dis_date_" + id_approve + "").hide();
+                            $("#comments_" + id_approve + "").tooltip();
+
+
+                        }
+                        ajax_status = 0;
+                    });
+
+                }
+                else {
+                    $("#itemlist tr td .temp ").each(function (index, val) {
+                        var checkid = $(val).attr("id");
+                        var split_id = checkid.split("_");
+                        var id_reject = split_id[2];
+                        var email_values = $("#emailaddress_" + id_reject + "").text();
+                        var name_values = $("#name_" + id_reject + "").text();
+                        if ($("#" + checkid).is(":checked", true)) {
+                            $("#color_" + id_reject + "").css("color", "#b8b894");
+                            reject_arr.push(id_reject);
+                            name_arr.push(name_values);
+                            email_arr.push(email_values);
+                            $("#ar_" + id_reject + "").text("Rejected");
+                            //$("#toggle_span_" + id_reject + "").hide();
+                            //$("#dis_date_" + id_reject + "").show().text("--");
+                            $("#date_span_" + id_reject + "").hide();
+                            $("#date_hidden_" + id_reject + "").show();
+                            $("#comments_" + id_reject + "").tooltip();
+
+
+                        }
+                        ajax_status = 1;
+                    });
+
+                }
+            });
+            $("#send").click(function () {
+                debugger
+                $(".confirm").hide();
+                toastr.success("Email Sent succusfully!!!");
+                var comment_text = $("#text").val();
+                comments_arr.push(comment_text);
+                comments_string = comments_arr.toString();
+                name_string = name_arr.toString();
+                email_string = email_arr.toString();
+                if (ajax_status == 0) {
+                    if (aprroved_arr.length != 0) {
+                        debugger
+                        apr_string = aprroved_arr.toString();
+                        comments_string = comments_arr.toString();
+                        $.ajax({
+                            url: "/Onboard/savelist/",
+                            type: "POST",
+                            data: { approve: apr_string, comments: comments_string, email: email_string, name: name_string },
+
+                        });
+                    }
+                }
+                else if (reject_arr.length != 0) {
+                    rej_string = reject_arr.toString();
+                    $.ajax({
+                        url: "/Onboard/savelist/",
+                        type: "POST",
+                        data: { reject: rej_string, comments: comments_string, email: email_string, name: name_string },
+                    });
+                }
+                $("#itemlist tr td .temp ").each(function (index, val) {
+                    debugger
+                    var checkid = $(val).attr("id");
+                    var split_id = checkid.split("_");
+                    var uncheck = split_id[2];
+                    var ischecked = $("#" + checkid).is(":checked", true);
+                    if (ischecked) {
+                        $("#comments_" + uncheck + "").text(comment_text.substring(0, 5) + "....").removeAttr("title").attr("title", comment_text);
+                        $("#" + checkid + "").prop("checked", false);
+
+
+
+
+                        //var email = new Object();
+                        //email.subject = subject;
+                        //email.comments = comments_string;
+                        //email.Email = email_string;
+
+                    }
+
+                });
+                debugger
+
+                //$.ajax({
+                //    url: "/Onboard/savelist/",
+                //    type: "POST",
+                //    data: { email: email_string, name: name_string },
+                //});
+                $(".confirm").hide();
+            });
+            $("#cross").click(function () {
+                $(".confirm").hide();
+                $("#send").click();
+            });
+            $(".datepicker").datepicker({ dateFormat: 'dd-mm-yy' })
+            $(".confirm").draggable();
+        });
+    </script>
+</head>
+
+<body style="background-color: #F8F4EE;">
+    <div style="padding-top:9%;">
+        @*@using (Html.BeginForm("savelist", "Home", FormMethod.Post))
+            {*@
+
+        <label class="container" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;font-size: 30px;margin-bottom: 1%;">
+            Add
+            Employee
+        </label>
+        <div style="margin-left:4%;">
+            <center>
+                <button type="button" class="btn btn-success" id="approve" name="Approve" value="Approve">
+                    Approve
+                </button><button type="button" class="btn btn-danger ml-4" name="reject" id="reject" value="Reject">
+                    Reject
+                </button>
+            </center>
+            <table class="table table-hover mt-4">
+                <thead style="background-color: #C27B43;">
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Email ID</th>
+                        <th>Joinning Date</th>
+                        <th>Validated</th>
+                        <th>Approved/Rejected</th>
+                        <th>Onboard Date</th>
+                        <th>Comments</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="itemlist">
+                    @foreach (var item in Model)
+                    {
+                        <tr id="color_@item.id">
+                            <td><input type="checkbox" class="temp" id="batch_check_@item.id" /></td>
+                            <td id="name_@item.id">@(item.fname+" "+item.mname+" "+item.lname)</td>
+                            <td><span id="emailaddress_@item.id">@item.email</span></td>
+                            <td>@Convert.ToString(string.Format("{0:dd-MM-yyyy}", item.joinning_date))</td>
+                            <td>
+                                @if (@item.status == "Validated" || @item.status == "Approved" || @item.status == "Rejected")
+                                {
+                                    <span id="validate_@item.id">Yes</span>
+                                }
+                                else
+                                {
+                                    <span>--</span>
+                                }
+                            </td>
+                            <td id="apr_rej_@item.id">
+                                @if (@item.status == "Approved" || @item.status == "Rejected")
+                                {<span id="ar_@item.id"> @item.status</span>
+                            }
+                            else
+                            {
+                                <span id="ar_@item.id">--</span>}
+                            </td>
+                            <td id="onboard_@item.id">
+                                @if (@item.status == "Approved" && @item.onboard == "")
+                                {
+                                    <div style="border:thin;background-color:white;width:120px;" class="dateval" id="date_span_@item.id">
+                                        <span><input type="text" style="border:none;width:100px;" class="datepicker form-control" placeholder="Ondoard Date" id="date_@item.id" /></span>
+                                        <span class="fas fa-calendar-alt text-secondary"></span>
+                                    </div>
+                                    <span id="date_hidden_@item.id" style="display:none;">--</span>
+                                }
+                                else if (@item.status == "Approved" && @item.onboard != "")
+                                {
+                                    <span id="date_hidden_@item.id" style="display:none;">--</span>
+                                    <div style="border:thin;background-color:white;width:120px;" class="dateval" id="date_span_@item.id">
+                                        @*@Convert.ToString(string.Format("{0:dd/mm/yyyy}", @item.onboard))*@
+                                        <span><input type="text" class="datepicker form-control" style="border:none;width:100px;" id="date_@item.id" value=@item.onboard /></span>
+                                        <span class="fas fa-calendar-alt text-secondary"></span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div style="border:thin;display:none; background-color:white;width:120px;" class="dateval" id="date_span_@item.id">
+                                        <span><input type="text" style="border:none;width:100px;" placeholder="Ondoard Date" class="datepicker form-control" id="date_@item.id" /></span>
+                                        <span class="fas fa-calendar-alt text-secondary"></span>
+                                    </div>
+                                    <span id="date_hidden_@item.id">--</span>
+                                }
+                            </td>
+                            <td>
+                                @if (@item.comments == "")
+                                {
+                                    <span id="comments_@item.id" data-toggle="tooltip">No Comments</span>
+                                }
+                                else
+                                {
+                                    <span id="comments_@item.id" data-toggle="tooltip" title="@item.comments">@(item.comments.Substring(0,5)+"...")</span>
+                                }
+                            </td>
+                            <td><button type="button" class="btn btn-primary" onclick='window.location="@Url.Action("Token","ProspectiveEmployee")?token=@item.token"'>View Application</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="confirm ui-widget-content">
+            <form>
+                <div class="message">
+                    <label>Comments:</label><button id="cross" type="submit">
+                        <span class="material-icons">
+                            close
+                        </span>
+                    </button>
+                    <br />
+                    <textarea id="text" rows="6" cols="30" placeholder="comment here...">
+
+                      </textarea>
+                </div>
+                <br>
+                <button type="button" class="btn btn-success" id="send">Welcome</button>
+            </form>
+        </div>
+        @*}*@
+    </div>
+</body>
+
+</html>

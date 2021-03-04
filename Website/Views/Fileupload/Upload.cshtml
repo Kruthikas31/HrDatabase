@@ -1,0 +1,904 @@
+﻿@model JARVIS.Models.Employee
+
+
+@{
+    ViewBag.Title = "Upload";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
+}
+@{
+    var data = ViewBag.Message;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/Content/wizard.css" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    @*<link rel="stylesheet" href="https://mdbootstrap.com/api/snippets/static/download/MDB-Pro_4.7.5/css/mdb.min.css">*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    @*<script src="@Url.Content(" ~/Scripts/jquery-1.10.2.min.js ")" type="text/javascript"></script>*@
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/99c88c9b62.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" crossorigin="anonymous">
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#preview0").css('visibility', 'hidden');
+            $("#preview1").css('visibility', 'hidden');
+            $("#preview2").css('visibility', 'hidden');
+            $("#preview3").css('visibility', 'hidden');
+            $("#preview4").css('visibility', 'hidden');
+            $("#preview5").css('visibility', 'hidden');
+            $("#preview6").css('visibility', 'hidden');
+            $("#preview7").css('visibility', 'hidden');
+            $("#preview8").css('visibility', 'hidden');
+            $("#preview9").css('visibility', 'hidden');
+
+            $("#preview10").css('visibility', 'hidden');
+
+            $('#blah' + 0 + 'embed')
+            $('#preview' + 0).html('<embed id="Main' + 0 + '" src="' + sessionStorage['file' + 0] + '" width="50" height="50"/>');
+            $('#span' + 0).text(sessionStorage['filename' + 0]);
+            $('#preview0').css('visibility', 'visible');
+            $('#blah' + 1 + 'embed')
+            $('#preview' + 1).html('<embed id="Main' + 1 + '" src="' + sessionStorage['file' + 1] + '" width="50" height="50"/>');
+            $('#span' + 1).text(sessionStorage['filename' + 1]);
+            $('#preview1').css('visibility', 'visible');
+            $('#blah' + 2 + 'embed')
+            $('#preview' + 2).html('<embed id="Main' + 2 + '" src="' + sessionStorage['file' + 2] + '" width="50" height="50"/>');
+            $('#span' + 2).text(sessionStorage['filename' + 2]);
+            $('#preview2').css('visibility', 'visible');
+            $('#blah' + 3 + 'embed')
+            $('#preview' + 3).html('<embed id="Main' + 3 + '" src="' + sessionStorage['file' + 3] + '" width="50" height="50"/>');
+            $('#span' + 3).text(sessionStorage['filename' + 3]);
+            $('#preview3').css('visibility', 'visible');
+            $('#blah' + 4 + 'embed')
+            $('#preview' + 4).html('<embed id="Main' + 4 + '" src="' + sessionStorage['file' + 4] + '" width="50" height="50"/>');
+            $('#span' + 4).text(sessionStorage['filename' + 4]);
+            $('#preview4').css('visibility', 'visible');
+            $('#blah' + 5 + 'embed')
+            $('#preview' + 5).html('<embed id="Main' + 5 + '" src="' + sessionStorage['file' + 5] + '" width="50" height="50"/>');
+            $('#span' + 5).text(sessionStorage['filename' + 5]);
+            $('#preview5').css('visibility', 'visible');
+            $('#blah' + 6 + 'embed')
+            $('#preview' + 6).html('<embed id="Main' + 6 + '" src="' + sessionStorage['file' + 6] + '" width="50" height="50"/>');
+            $('#span' + 6).text(sessionStorage['filename' + 6]);
+            $('#preview6').css('visibility', 'visible');
+            $('#blah' + 7 + 'embed')
+            $('#preview' + 7).html('<embed id="Main' + 7 + '" src="' + sessionStorage['file' + 7] + '" width="50" height="50"/>');
+            $('#span' + 7).text(sessionStorage['filename' + 7]);
+            $('#preview7').css('visibility', 'visible');
+            $('#blah' + 8 + 'embed')
+            $('#preview' + 8).html('<embed id="Main' + 8 + '" src="' + sessionStorage['file' + 8] + '" width="50" height="50"/>');
+            $('#span' + 8).text(sessionStorage['filename' + 8]);
+            $('#preview8').css('visibility', 'visible');
+            $('#blah' + 9 + 'embed')
+            $('#preview' + 9).html('<embed id="Main' + 9 + '" src="' + sessionStorage['file' + 9] + '" width="50" height="50"/>');
+            $('#span' + 9).text(sessionStorage['filename' + 9]);
+            $('#preview9').css('visibility', 'visible');
+            $('#blah' + 10 + 'embed')
+            $('#preview' + 10).html('<embed id="Main' + 10 + '" src="' + sessionStorage['file' + 10] + '" width="50" height="50"/>');
+            $('#span' + 10).text(sessionStorage['filename' + 10]);
+            $('#preview10').css('visibility', 'visible');
+
+
+
+            //$("#preview1").hover(function () {
+
+            //    $("#preview1").css({ "height": "100px", "width": "100px" });
+            //});
+
+            $(function () {
+                $("#Comments").text("Any Comments here...");
+            });
+            $("#Apply").click(function () {
+                alert("Upload Successfull..");
+
+
+            });
+            $("#cancelbtn").click(function () {
+                sessionStorage.clear();
+                $("#preview0").css('visibility', 'hidden');
+                $("#preview1").css('visibility', 'hidden');
+                $("#preview2").css('visibility', 'hidden');
+                $("#preview3").css('visibility', 'hidden');
+                $("#preview4").css('visibility', 'hidden');
+                $("#preview5").css('visibility', 'hidden');
+                $("#preview6").css('visibility', 'hidden');
+                $("#preview7").css('visibility', 'hidden');
+                $("#preview8").css('visibility', 'hidden');
+                $("#preview9").css('visibility', 'hidden');
+
+                $("#preview10").css('visibility', 'hidden');
+
+
+
+            });
+        });
+
+
+
+    </script>
+    <style>
+        .custom-file-upload {
+            background-color: #2171C2;
+            border-radius: 20px;
+            color: white;
+            height: 10px;
+            font-size: 18px;
+            padding-bottom: 30px;
+            padding-top: 5px;
+            width: 100px;
+            border: none;
+            outline: none;
+        }
+
+        #btn-upld {
+            background-color: #2171C2;
+            border-radius: 20px;
+            color: white;
+            height: 10px;
+            font-size: 18px;
+            padding-bottom: 30px;
+            padding-top: 5px;
+            width: 100px;
+            border: none;
+            outline: none;
+        }
+
+        #savenxtbtn, #savebtn {
+            border-radius: 20px;
+            color: white;
+            height: 35px;
+            font-size: 15px;
+            padding-bottom: 3px;
+            padding-top: 2px;
+            width: 100px;
+            border: none;
+            background: linear-gradient(#26E426, #0B420B);
+        }
+
+        textarea {
+            width: 50%;
+            height: 100px
+        }
+
+        /* hr {
+            border: 1px inset;
+            color: black;
+            display: block;
+            height: 2px;
+            margin: 2em auto;
+        }*/
+        #Comments {
+            margin-left: 75%;
+            width: 15em;
+        }
+
+        .wrong-btn {
+            width: 25px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .form-check [type="checkbox"]:checked + label:before {
+            border-color: transparent #009688 #009688 transparent;
+        }
+
+        div {
+            font-size: 20px;
+            font-family: roboto;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+
+        h6 {
+            color: #2171C2;
+            font-size: 20px;
+        }
+
+        #cancelbtn {
+            background-color: #847C7C;
+            border-radius: 20px;
+            color: white;
+            height: 34px;
+            font-size: 15px;
+            padding-bottom: 3px;
+            padding-top: 2px;
+            width: 92px;
+            border: none;
+            outline: none;
+        }
+
+        input[type="checkbox"] {
+            width: 20px; /*Desired width*/
+            height: 20px; /*Desired height*/
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        var progress = 0;
+        function readURL(num, input) {
+
+            var fi = document.getElementById('file' + num);
+            var filename = $('#file' + num)[0].files[0].name;
+            // Check if any file is selected.
+            if (fi.files.length > 0) {
+                for (var i = 0; i <= fi.files.length - 1; i++) {
+
+                    var fsize = fi.files.item(i).size;
+                    var file = Math.round((fsize / 1024));
+                    // The size of the file.
+                    if (file >= 40) {
+                        alert(
+                            "File too Big, please select a file less than 4mb");
+                    } else if (file < 20) {
+                        alert(
+                            "File too small, please select a file greater than 2mb");
+                    } else {
+                        document.getElementById('span' + num).innerHTML = filename;
+
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+
+                            $('#blah' + num + 'embed')
+                            $('#preview' + num).html('<embed id="Main' + num + '" src="' + e.target.result + '" width="50" height="50"/>');
+                            sessionStorage['file' + num] = e.target.result;
+                            sessionStorage['filename' + num] = filename;
+                            document.cookie = e.target.result;
+                            var basefile = e.target.result;
+                            window.localStorage.setItem("file", basefile);
+
+                        };
+                        increment();
+                        reader.readAsDataURL(input.files[0]);
+                        $("#wrong" + num).css("visibility", "visible");
+                        $("#preview" + num).css("visibility", "visible");
+                        $("#check" + num).css("visibility", "hidden");
+                        $("#check" + num).prop("checked", true);
+                        $("#progress" + num).css("width", 100 + '%');
+                        var i = $(this).prev('label').clone();
+                        var file = $('#file' + num)[0].files[0].name;
+                        //  $("#as").prev('span').text(file);
+                        document.getElementById("span" + num).innerHTML = file;
+
+
+                    }
+                }
+            }
+
+
+
+
+        }
+
+        function wrongfuntion(num) {
+            $("#preview" + num).css("visibility", "hidden");
+            $("#wrong" + num).css("visibility", "hidden");
+            $("#blah" + num).hide();
+
+            //$("#Main" + num).remove();
+            $('#Main' + num).val('');
+            $("#Main" + num).attr("src", "");
+            progress -= 10;
+            $("#progress").css("width", 0 + '%');
+            $('#file' + num).val('');
+            $("#check" + num).css("visibility", "visible");
+            $("#check" + num).prop("checked", false);
+            document.getElementById("span" + num).innerHTML = "No File Selected";
+            decrement();
+        }
+        var count = 0;
+        function increment() {
+            count = count + 10;
+            document.getElementById("a1").value = count;
+        }
+        function decrement() {
+            count = count - 10;
+            document.getElementById("a1").value = count;
+        }
+
+
+
+    </script>
+    <style>
+        /*table,
+        th,
+        td {
+            border: 1px solid black;
+            padding: 25px;
+
+        }
+
+        thead {
+            background-color: orange;
+            color: white;
+        }*/
+
+    </style>
+</head>
+<body>
+    <div class="nav" style=" background-color: white;">
+        <div class="top-nav d-flex justify-content-between">
+            <img src="~/Content/Starmark_Logo_252X70.png" style="        width: auto;
+        height: 60px;
+        padding-top: 0px;
+        margin-top: 15px;
+">
+            <ul id="progressbar">
+                <li>
+                    <button id="bt1" class="b1 "><i class="far fa-id-card" style="font-size: 20px"></i></button>
+                    <div id="before">
+                        <div id="bar1" class="before-bar" style="height: 4px; width:120px;"></div>
+                    </div>Details
+                </li>
+                <li>
+                    <button id="bt2" class="b1"><i class="fas fa-user-graduate" style="font-size: 20px"></i></button>
+                    <div id="before">
+                        <div id="bar2" class="before-bar" style="height:4px; width: 100px;"></div>
+                    </div>Education & Experience
+                </li>
+                <li>
+                    <button id="bt3" class="b1 active"><i class="fas fa-file-upload" style="font-size: 20px"></i></button>
+                    <div id="before">
+                        <div id="bar3" class="before-bar" style="height:4px; width:100px;"></div>
+                    </div>Upload Documents
+                </li>
+                <li>
+                    <button class="b1"><i class="fas fa-file-signature" style="font-size: 20px"></i></button>
+                    <div id="before">
+                        <div id="bar4" class="before-bar" style="height:4px; width:100px;"></div>
+                    </div>Sign Documents
+                </li>
+                <li>
+                    <button class="b1 last"><i class="far fa-check-circle" style="font-size: 20px"></i></button>
+                    <div id="before">
+                        <div class="before-bar" style="height:4px; width:100px; visibility: hidden;"></div>
+                    </div>Finish
+                </li>
+            </ul>
+            <img src="~/Content/starmark20.PNG" style="height: 70px; width: 70px;">
+        </div>
+        <div id="grad"></div>
+    </div>
+    <!--nav end-->
+
+    <div>
+        <div class="row">
+            <div class="col-3 sidenavb" style="padding-top: 10px; padding-left: 30px;">
+                <p>Personal Details </p>
+                <a href="@Url.Action("BasicInformation","ProspectiveEmployee")">> Basic Information</a>
+                <a href="@Url.Action("BasicInformation","ProspectiveEmployee")">> Current Address</a>
+                <a href="@Url.Action("BasicInformation","ProspectiveEmployee")">> Permanent Address</a>
+                <a href="@Url.Action("BasicInformation","ProspectiveEmployee")">> Bank Details</a>
+                <a href="@Url.Action("BasicInformation","ProspectiveEmployee")">> Dependent Details</a><br>
+                <p>Education and Experience</p>
+                <a href="@Url.Action("EducationExperience","ProspectiveEmployee")">> Education Details</a>
+                <a href="@Url.Action("EducationExperience","ProspectiveEmployee")">> Experience Details</a><br>
+                <p><a href="upload"> Upload Documents</a></p>
+                <p><a href="@Url.Action("Index","sign")">Sign Documents</a></p>
+            </div>
+            <!--sidenavb end-->
+            <div class="col-9 main" style="padding-top: 15px; ">
+                @using (Html.BeginForm("Upload", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+                    <br />
+                    <div style="text-align:left;">
+                        <h4>Upload the following Documents</h4>
+
+                    </div>
+
+                    @*<div>
+                            Please fill
+                            <span style="color:red">(*)</span>
+                            out below fields and click Submit to complete the process of upload Documents
+                        </div>*@
+                    <progress value="0" max="100" id="a1" style="width:100% ;height:50px"></progress>
+
+                    <hr />
+                    <h6> Note:If you have uploaded the files mentioned below as one pdf from AllFiles option then click the checkboxes of the files that are included in your pdf.</h6>
+                    @*<div class="row mt-4">
+                            <div class="col-md-5">
+                                @Html.LabelFor(m => m.Name)<b style="color:red"> *</b>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(m => m.Name, new { type = "text", required = "required" })
+                            </div>
+                        </div>*@
+                    <hr />
+                    <div class="row mt-6" style="margin-top:50px">
+                        <div class="col-md-5">
+                            @Html.Label("1 Upload  below mentioned files in one pdf if possible from here")<span></span>
+
+                            @*<div id="info-msg" style="display:none;color:#4D799F">
+                                    Please select the checkbox if uploaded below any of the files from this option, else upload from respective given below.
+                                </div>*@
+                        </div>
+
+                        <div class="col-md-3">
+                            @if (ViewBag.Message == null)
+                            {
+                                @Html.TextBoxFor(m => m.Allfiles, new { type = "file", id = "file0", onchange = "readURL(0,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file0" class="custom-file-upload" id="btn-upld">Browse</label>&nbsp;<span id="span0">No File Selected</span>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.Allfiles, new { type = "file", id = "file0", value = @data.allfiles1, onchange = "readURL(0,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file0" class="custom-file-upload" id="btn-upld">Browse</label>&nbsp;<span id="span0">@data.allfiles1</span>
+                                    <a href="~/uploadfiles/@data.name1/@data.allfiles1">View</a>
+                                </div>
+                            }
+
+                        </div>
+                        <div class="col-md-1">
+                            <div class="progress sticky-top">
+                                <div class="progress-bar bg-success progress-bar-animated " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0% ; padding:unset;" id="progress0">100%</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2" id="preview0" style="height: 30px;">
+                            <embed id="blah0" src="" />
+                        </div>
+                        <div class="col-md-1">
+                            <img src="https://cdn2.iconfinder.com/data/icons/e-business-helper/240/627249-delete3-512.png" alt="Remove File"
+                                 class="wrong-btn" id="wrong0" onclick=" wrongfuntion(0) ;">
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mt-4">
+                        <div class="col-md-5">
+                            @Html.Label("2 Mark sheet from SSLC to Highest Degree / Provisional Certificates")<i style="color:red">(Required) </i>
+                        </div>
+                        <div class="col-md-3">
+                            @if (ViewBag.Message == null)
+                            {
+                                @Html.TextBoxFor(m => m.Marksheet, new { type = "file", id = "file1", onchange = "readURL(1,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file1" class="custom-file-upload">Browse</label>&nbsp;<span id="span1">No file choosen</span>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.Marksheet, new { type = "file", id = "file1", value = @data.marksheet1, onchange = "readURL(1,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file1" class="custom-file-upload">Browse</label>&nbsp;<span id="span1">@data.marksheet1</span>
+                                    <a href="~/uploadfiles/@data.name1/@data.marksheet1">View</a>
+
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-1">
+                            <div class="progress sticky-top">
+                                <div class="progress-bar bg-success progress-bar-animated " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0% ; padding:unset;" id="progress1">100%</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1" id="preview1" style="height: 30px; padding-bottom:20px;">
+                            <embed id="blah1" src="" />
+                        </div>
+                        <div class="col-md-1">
+                            <img src="https://cdn2.iconfinder.com/data/icons/e-business-helper/240/627249-delete3-512.png" alt="Remove File"
+                                 class="wrong-btn" id="wrong1" onclick=" wrongfuntion(1) ;">
+                        </div>
+                        <div class="col-md-1">
+                            @Html.CheckBoxFor(model => model.isActive[0], new { id = "check2", required = "required" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mt-4">
+                        <div class="col-md-5">
+                            @Html.Label("3 Aadhar Card/Acknowledgement copy in case applied")<i style="color:red">(Required) </i>
+                        </div>
+                        <div class="col-md-3">
+                            @if (ViewBag.Message == null)
+                            {
+                                @Html.TextBoxFor(m => m.Aadhar_card, new { type = "file", id = "file2", onchange = "readURL(2 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file2" required="required" class="custom-file-upload">Browse</label>&nbsp;<span id="span2">No File Selected</span>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.Aadhar_card, new { type = "file", id = "file2", value = @data.aadhar_card1, onchange = "readURL(2 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file1" class="custom-file-upload">Browse</label>&nbsp;<span id="span1">@data.aadhar_card1</span>
+                                    <a href="~/uploadfiles/@data.name1/@data.aadhar_card1">View</a>
+
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-1">
+                            <div class="progress sticky-top">
+                                <div class="progress-bar bg-success progress-bar-animated " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0% ; padding:unset;" id="progress2">100%</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1" id="preview2" style="height: 30px;">
+                            <embed id="blah2" />
+                        </div>
+                        <div class="col-md-1">
+                            <img src="https://cdn2.iconfinder.com/data/icons/e-business-helper/240/627249-delete3-512.png" alt="Remove File"
+                                 class="wrong-btn" id="wrong2" onclick=" wrongfuntion(2) ;">
+                        </div>
+                        <div class="col-md-1">
+                            @Html.CheckBoxFor(model => model.isActive[1], new { id = "check2", required = "required" })
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row mt-4">
+                        <div class="col-md-5">
+                            @Html.Label("4 One Passport size Photograph")<i style="color:red">(Required) </i>
+                        </div>
+                        <div class="col-md-3">
+                            @if (ViewBag.Message == null)
+                            {
+                                @Html.TextBoxFor(m => m.Photo, new { type = "file", id = "file10", onchange = "readURL(10 ,this);", style = "display: none;" })
+
+
+                                <div>
+                                    <label for="file10" class="custom-file-upload">Browse</label>&nbsp;<span id="span10">No File Selected</span>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.Photo, new { type = "file", id = "file10", value = @data.photos1, onchange = "readURL(10 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file1" class="custom-file-upload">Browse</label>&nbsp;<span id="span1">@data.photos1</span>
+                                    <a href="~/uploadfiles/@data.name1/@data.photos1">View</a>
+
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-1">
+                            <div class="progress sticky-top">
+                                <div class="progress-bar bg-success progress-bar-animated " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0% ; padding:unset;" id="progress10">100%</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1" id="preview10" style="height: 30px;">
+                            <embed id="blah10" src=" " height="0px" width="0px" />
+                        </div>
+                        <div class="col-md-1">
+                            <img src="https://cdn2.iconfinder.com/data/icons/e-business-helper/240/627249-delete3-512.png" alt="Remove File"
+                                 class="wrong-btn" id="wrong10" onclick=" wrongfuntion(10) ;">
+                        </div>
+                        <div class="col-md-1">
+                            @Html.CheckBoxFor(model => model.isActive[9], new { id = "check10", required = "required" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mt-4">
+                        <div class="col-md-5">
+                            @Html.Label("5 PAN card/copy of form 49A in case just applied")<b style="color:#00427B"> </b>
+                        </div>
+                        <div class="col-md-3">
+                            @if (ViewBag.Message == null)
+                            {
+                                @Html.TextBoxFor(m => m.PAN_card, new { type = "file", id = "file3", onchange = "readURL(3 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file3" class="custom-file-upload">Browse</label>&nbsp;<span id="span3">No File Selected</span>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.PAN_card, new { type = "file", id = "file3", value = @data.pAN_card1, onchange = "readURL(3 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file1" class="custom-file-upload">Browse</label>&nbsp;<span id="span1">@data.pAN_card1</span>
+                                    <a href="~/uploadfiles/@data.name1/@data.pAN_card1">View</a>
+
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-1">
+                            <div class="progress sticky-top">
+                                <div class="progress-bar bg-success progress-bar-animated " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0% ; padding:unset;" id="progress3">100%</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1" id="preview3" style="height: 30px;">
+                            <embed id="blah3" src=" " height="0px" width="0px" />
+                        </div>
+                        <div class="col-md-1">
+                            <img src="https://cdn2.iconfinder.com/data/icons/e-business-helper/240/627249-delete3-512.png" alt="Remove File"
+                                 class="wrong-btn" id="wrong3" onclick=" wrongfuntion(3) ;">
+                        </div>
+                        <div class="col-md-1">
+                            @Html.CheckBoxFor(model => model.isActive[2], new { id = "check3" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mt-4">
+                        <div class="col-md-5">
+                            @Html.Label("6 Passport/Receipt of application in case applied")<b style="color:#00427B"> </b>
+                        </div>
+                        <div class="col-md-3">
+                            @if (ViewBag.Message == null)
+                            {
+                                @Html.TextBoxFor(m => m.Passport, new { type = "file", id = "file4", onchange = "readURL(4 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file4" class="custom-file-upload">Browse</label>&nbsp;<span id="span4">No File Selected</span>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.Passport, new { type = "file", id = "file4", value = @data.passport1, onchange = "readURL(4 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file1" class="custom-file-upload">Browse</label>&nbsp;<span id="span1">@data.passport1</span>
+                                    <a href="~/uploadfiles/@data.name1/@data.passport1">View</a>
+
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-1">
+                            <div class="progress sticky-top">
+                                <div class="progress-bar bg-success progress-bar-animated " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0% ; padding:unset;" id="progress4">100%</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1" id="preview4" style="height: 30px;">
+                            <embed id="blah4" src=" " height="0px" width="0px" />
+                        </div>
+                        <div class="col-md-1">
+                            <img src="https://cdn2.iconfinder.com/data/icons/e-business-helper/240/627249-delete3-512.png" alt="Remove File"
+                                 class="wrong-btn" id="wrong4" onclick=" wrongfuntion(4) ;">
+                        </div>
+                        <div class="col-md-1">
+                            @Html.CheckBoxFor(model => model.isActive[3], new { id = "check4" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mt-4">
+                        <div class="col-md-5">
+                            @Html.Label("7 Bank statement of last three months")<b style="color:#00427B"> </b>
+                        </div>
+                        <div class="col-md-3 ">
+                            @if (ViewBag.Message == null)
+                            {
+                                @Html.TextBoxFor(m => m.Bank_stmt, new { type = "file", id = "file5", onchange = "readURL(5 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file5" class="custom-file-upload">Browse</label>&nbsp;<span id="span5">No File Selected</span>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.Bank_stmt, new { type = "file", id = "file5", value = @data.bank_stmt1, onchange = "readURL(5 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file1" class="custom-file-upload">Browse</label>&nbsp;<span id="span1">@data.bank_stmt1</span>
+                                    <a href="~/uploadfiles/@data.name1/@data.bank_stmt1">View</a>
+
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-1">
+                            <div class="progress sticky-top">
+                                <div class="progress-bar bg-success progress-bar-animated " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0% ; padding:unset;" id="progress5">100%</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1" id="preview5" style="height: 30px;">
+                            <embed id="blah5" src=" " height="0px" width="0px" />
+                        </div>
+                        <div class="col-md-1">
+                            <img src="https://cdn2.iconfinder.com/data/icons/e-business-helper/240/627249-delete3-512.png" alt="Remove File"
+                                 class="wrong-btn" id="wrong5" onclick=" wrongfuntion(5) ;">
+                        </div>
+                        <div class="col-md-1">
+                            @Html.CheckBoxFor(model => model.isActive[4], new { id = "check5" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mt-4">
+                        <div class="col-md-5">
+                            @Html.Label("8 Revealing /Registration letter from previous Employer")<b style="color:#00427B"></b>
+                        </div>
+                        <div class="col-md-3">
+                            @if (ViewBag.Message == null)
+                            {
+                                @Html.TextBoxFor(m => m.Revealing_letter, new { type = "file", id = "file6", onchange = "readURL(6 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file6" class="custom-file-upload">Browse</label>&nbsp;<span id="span6">No File Selected</span>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.Revealing_letter, new { type = "file", id = "file6", value = @data.revealing_letter1, onchange = "readURL(6 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file1" class="custom-file-upload">Browse</label>&nbsp;<span id="span1">@data.revealing_letter1</span>
+                                    <a href="~/uploadfiles/@data.name1/@data.revealing_letter1">View</a>
+
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-1">
+                            <div class="progress sticky-top">
+                                <div class="progress-bar bg-success progress-bar-animated " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0% ; padding:unset;" id="progress6">100%</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1" id="preview6" style="height: 30px;">
+                            <embed id="blah6" src=" " height="0" width="0" />
+                        </div>
+                        <div class="col-md-1">
+                            <img src="https://cdn2.iconfinder.com/data/icons/e-business-helper/240/627249-delete3-512.png" alt="Remove File"
+                                 class="wrong-btn" id="wrong6" onclick=" wrongfuntion(6) ;">
+                        </div>
+                        <div class="col-md-1">
+                            @Html.CheckBoxFor(model => model.isActive[5], new { id = "check6" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mt-4">
+                        <div class="col-md-5">
+
+                            @Html.Label("9 Offer/Appointment letter from all previous Employer")<b style="color:#00427B"> </b>
+                        </div>
+                        <div class="col-md-3">
+                            @if (ViewBag.Message == null)
+                            {
+                                @Html.TextBoxFor(m => m.Offer_letter, new { type = "file", id = "file7", onchange = "readURL(7 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file7" class="custom-file-upload">Browse</label>&nbsp;<span id="span7">No File Selected</span>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.Offer_letter, new { type = "file", id = "file7", value = @data.offer_letter1, onchange = "readURL(7 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file1" class="custom-file-upload">Browse</label>&nbsp;<span id="span1">@data.offer_letter1</span>
+                                    <a href="~/uploadfiles/@data.name1/@data.offer_letter1">View</a>
+
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-1">
+                            <div class="progress sticky-top">
+                                <div class="progress-bar bg-success progress-bar-animated " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0% ; padding:unset;" id="progress7">100%</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1" id="preview7" style="height: 30px;">
+                            <embed id="blah7" src=" " height="0" width="0" />
+                        </div>
+                        <div class="col-md-1">
+                            <img src="https://cdn2.iconfinder.com/data/icons/e-business-helper/240/627249-delete3-512.png" alt="Remove File"
+                                 class="wrong-btn" id="wrong7" onclick=" wrongfuntion(7) ;">
+                        </div>
+                        <div class="col-md-1">
+                            @Html.CheckBoxFor(model => model.isActive[6], new { id = "check7" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mt-4">
+                        <div class="col-md-5">
+                            @Html.Label("10 Experience/Service Certificate from all previous Employer")<b style="color:#00427B"> </b>
+                        </div>
+                        <div class="col-md-3">
+                            @if (ViewBag.Message == null)
+                            {
+                                @Html.TextBoxFor(m => m.Exp_certificate, new { type = "file", id = "file8", onchange = "readURL(8 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file8" class="custom-file-upload">Browse</label>&nbsp;<span id="span8">No File Selected</span>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.Exp_certificate, new { type = "file", id = "file8", value = @data.exp_certificate1, onchange = "readURL(8 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file1" class="custom-file-upload">Browse</label>&nbsp;<span id="span1">@data.exp_certificate1</span>
+                                    <a href="~/uploadfiles/@data.name1/@data.exp_certificate1">View</a>
+
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-1">
+                            <div class="progress sticky-top">
+                                <div class="progress-bar bg-success progress-bar-animated " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0% ; padding:unset;" id="progress8">100%</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1" id="preview8" style="height: 30px;">
+                            <embed id="blah8" src=" " height="0" width="0" />
+                        </div>
+                        <div class="col-md-1">
+                            <img src="https://cdn2.iconfinder.com/data/icons/e-business-helper/240/627249-delete3-512.png" alt="Remove File"
+                                 class="wrong-btn" id="wrong8" onclick=" wrongfuntion(8) ;">
+                        </div>
+                        <div class="col-md-1">
+                            @Html.CheckBoxFor(model => model.isActive[7], new { id = "check8" })
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row mt-4">
+                        <div class="col-md-5">
+                            @Html.Label("11 Latest 3 Months pay slips")<b style="color:#00427B"> </b>
+                        </div>
+                        <div class="col-md-3">
+                            @if (ViewBag.Message == null)
+                            {
+                                @Html.TextBoxFor(m => m.Latest_payslip, new { type = "file", id = "file9", onchange = "readURL(9 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file9" class="custom-file-upload">Browse</label>&nbsp;<span id="span9">No File Selected</span>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(m => m.Latest_payslip, new { type = "file", id = "file9", value = @data.latest_payslip1, onchange = "readURL(9 ,this);", style = "display: none;" })
+                                <div>
+                                    <label for="file1" class="custom-file-upload">Browse</label>&nbsp;<span id="span1">@data.latest_payslip1</span>
+                                    @if (@data.latest_payslip1 != "null")
+                                    {
+                                        <a href="~/uploadfiles/@data.name1/@data.latest_payslip1">View</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="~/uploadfiles/@data.name1/@data.latest_payslip1" style="display:none">View</a>
+                                    }
+
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-1">
+                            <div class="progress sticky-top">
+                                <div class="progress-bar bg-success progress-bar-animated " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0% ; padding:unset;" id="progress9">100%</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1" id="preview9" style="height: 30px;">
+                            <embed id="blah9" src=" " />
+                        </div>
+                        <div class="col-md-1">
+                            <img src="https://cdn2.iconfinder.com/data/icons/e-business-helper/240/627249-delete3-512.png" alt="Remove File"
+                                 class="wrong-btn" id="wrong9" onclick=" wrongfuntion(9) ;">
+                        </div>
+                        <div class="col-md-1">
+                            @Html.CheckBoxFor(model => model.isActive[8], new { id = "check9" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div>
+                            @Html.TextAreaFor(m => m.Comments, new { id = "Comments", placeholder = " Any Comments here..", required = "required" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="margin-left:75%;margin-top:20px;margin-bottom:50px">
+                            <input type="button" id="savebtn" value="Save" onclick="saveinfo(); " />
+
+                            <a href=@Url.Action("Index", "Sign")><input type="submit" id="uploadSave" name="next" class="next action-button-sn" value="Save & next" /></a>
+                            <input type="submit" id="cancelbtn" value="cancel" />
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,741 @@
+﻿
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/wizard.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/99c88c9b62.js" crossorigin="anonymous"></script>
+
+    <style>
+        .green {
+            border: 1px solid #34F458;
+        }
+
+        .red {
+            border: 1px solid #F90A0A;
+        }
+
+        .container {
+            background-color: #F8F4EE;
+            border: 2px #C27B43;
+            width: 1083px;
+
+        }
+
+        #heading {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        #sendlinkbtn {
+            background-color: #26E426;
+            color: white;
+            border-radius: 10px;
+            margin-top: 10px;
+
+        }
+        .open-button {
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            /* position: relative; */
+            background-color: #FF7600;
+            color: white;
+            border: #707070;
+            width: 144px;
+            height: 42px;
+            border-radius: 30px;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 180px;
+            /* Location of the box */
+            left: 25%;
+            top: 0;
+            width: 50%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: hidden;
+            /* Enable scroll if needed */
+            /* background-color: rgb(0, 0, 0); */
+            /* Fallback color */
+            /* background-color: rgba(0, 0, 0, 0.4); */
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            /* border: 1px solid black; */
+            background-color: #fefefe;
+            margin-top: 72px;
+            margin-left: 150px;
+            padding: 0;
+            width: 80%;
+            /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.5s;
+            animation-name: animatetop;
+            animation-duration: 0.5s
+        }
+
+        /* Add Animation */
+         @*-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }*@
+
+        /* The Close Button */
+        .close {
+            color: red;
+            float: right;
+            font-size: 32px;
+            font-weight: bold;
+            margin-right: 50px;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            padding: 2px 16px;
+            color: white;
+        }
+
+        .modal-body {
+            padding: 2px 16px;
+        }
+
+        .center {
+            margin: 0;
+            position: relative;
+            top: 80%;
+            left: 96%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+        .left{
+            padding-left: 150px;
+        }
+        .top{
+            margin-top: 0px;
+        }
+        table{
+            margin-left: 300px;
+        }
+        .pb{
+            margin-bottom: 15px;
+        }
+        .table1 {
+            display: none;
+        }
+        .second-level-padding{
+            padding-left:50px;
+        }
+    </style>
+</head>
+<body style="font-size:15px; background-color: #F8F4EE; margin-top:0px;">
+    
+    <div class="container my-4"  style="padding-top:9%;">
+
+        <h2 class="mb-4" id="heading" style="padding-top: 15px; text-align: center; font-size: 30px;">Invite Prospective Employee</h2>
+        <div id="inviteForm">
+            <table>
+                <tr class="top">
+                    <td>
+                        <label for="fullname" class="form-label" style="float: left;">Full Name</label>
+                    </td>
+                    <td class="left">
+                        <label for="pemail" class="form-control-label" style="float: left;">Email ID</label>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <div class="form-group">
+                            <input id="fullname" style="font-size:15px;" class="form-control input-group-lg reg_name pb" type="text" name="firstName"
+                                   placeholder="Full name">
+                        </div>
+                    </td>
+                    <td class="left">
+                        <div class="form-group">
+
+                            <input id="pemail" style="font-size:15px;" class="form-control input-group-lg reg_name pb" type="email" name="email"
+                                   placeholder="Email ID">
+                        </div>
+                    </td>
+
+                </tr>
+
+                <tr class="top">
+                    <td>
+                        <label for="level" class="form-control-label" style="float: left;">Level</label>
+                    </td>
+                    <td class="left">
+                        <label for="designation" class="form-control-label" style="float: left;">Designation</label>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <div class="form-group">
+
+                            <div class="text-center">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input pb" name="level" value="fresher" id="customRadio1">
+                                    <label style="font-size:12px;" class="custom-control-label" for="customRadio1">Fresher</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input pb" name="level" value="experienced" id="customRadio2" >
+                                    <label style="font-size:12px;" class="custom-control-label" for="customRadio2">Experienced</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="left">
+                        <div class="form-group">
+
+                            <input id="designation" style="font-size:15px;" class="form-control input-group-lg reg_name pb" type="text" name="role"
+                                   placeholder="Designation">
+                        </div>
+                    </td>
+
+
+                </tr>
+                <tr class="top">
+                    <td>
+                        <label for="joining-date" class="form-control-label" style="float: left;">Joining Date</label>
+                    </td>
+                    <td class="left">
+                        <label for="reporting-time" class="form-control-label" style="float: left;">Reporting Time</label>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <div class="form-group">
+
+                            <input id="joining-date" style="font-size:15px;" class="form-control input-group-lg reg_name pb" type="date"
+                                   name="joiningDate" placeholder="">
+                        </div>
+                    </td>
+                    <td class="left">
+                        <div class="form-group">
+
+                            <input id="reporting-time" style="font-size:15px;" class="form-control input-group-lg reg_name pb" type="time" name="reportingTime"
+                                   placeholder="Reporting-Time">
+                        </div>
+                    </td>
+
+                </tr>
+                <tr class="top">
+                    <td>
+                        <label for="approved-manager" class="form-control-label" style="float: left;">Approved Manager</label>
+                    </td>
+                    <td class="left">
+                        <label for="reporting-manager" class="form-control-label" style="float: left;">Reporting Manager</label>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <div class="form-group">
+
+                            <input id="approved-manager" style="font-size:15px;" class="form-control input-group-lg reg_name pb" type="text"
+                                   name="approvedManager" placeholder="Approved-Manger">
+                        </div>
+                    </td>
+                    <td class="left">
+                        <div class="form-group">
+
+                            <input id="reporting-manager" style="font-size:15px;" class="form-control input-group-lg reg_name pb" type="text"
+                                   name="reportingManager" placeholder="Reporting-Manager">
+                        </div>
+                    </td>
+
+                </tr>
+                <tr class="top">
+                    <td>
+                        <label for="monthly-gross-salary" class="form-control-label" style="float: left;">Monthly Gross Salary</label>
+                    </td>
+                    <td class="left">
+                        <label for="monthly-gross-incentive" class="form-control-label mgslabel" style="float: left;">Monthly Incentive</label>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <div class="form-group">
+
+                            <input id="monthly-gross-salary" style="font-size:15px;" class="form-control input-group-lg reg_name pb" type="text"
+                                   name="monthlyGross" placeholder="Monthly-Gross-Salary" onkeyup="myFunction()">
+                        </div>
+                    </td>
+                    <td class="left">
+                        <div class="form-group mgs">
+
+                            <input id="monthly-gross-incentive" style="font-size:15px;" class="form-control input-group-lg reg_name pb" type="text"
+                                   name="monthlyIncentive" placeholder="Monthly-Incentive" onkeyup="myFunction()">
+                        </div>
+                    </td>
+                </tr>
+                <tr class="top">
+                    <td>
+                        <div class="form-group">
+                            <label for="night-shift-allowance" style="float: left;">Night Shift Allowance</label>
+                            <input type="checkbox" name="nightShiftAllowance" id="night-shift-allowance" style="margin-left:7px;">
+                        </div>
+                    </td>
+                </tr>
+                <tr class="top">
+                    <td>
+                        <div class="form-group">
+                            <label for="monthly-gross-incentive-checkbox" style="float: left;">Monthly Incentive</label>
+                            <input type="checkbox" name="monthly-gross-incentive-checkbox" id="monthly-gross-incentive-checkbox" style="margin-left:30px;">
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+
+
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group row">
+                            <label for="role" class="col-sm-4 col-form-label">
+                                <b>Role</b>
+                            </label>
+                            <label for="role" class="col-sm-1 col-form-label">
+                                :
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="role">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="salary" class="col-sm-4 col-form-label">
+                                <b> Salary</b>
+                            </label>
+                            <label for="salary" class="col-sm-1 col-form-label">
+                                :
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="salary">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="joining-date1" class="col-sm-4 col-form-label">
+                                <b> Joining Date</b>
+                            </label>
+                            <label for="joining-date1" class="col-sm-1 col-form-label">
+                                :
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="joining-date1">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="pemail1" class="col-sm-4 col-form-label">
+                                <b> Email ID</b>
+                            </label>
+                            <label for="pemail1" class="col-sm-1 col-form-label1">
+                                :
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="pemail1">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="ceter sBtn">
+                                <button id="sendlinkbtn">Send Link</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table1" id="salaryBreakup">
+                <table style="margin-left: 300px; width: 50%; height: 50%;" class="table table-bordered table-sm">
+                    <tr>
+                        <th colspan="2" style="text-align: center;">
+                            Salary Breakup
+                        </th>
+                    </tr>
+                    <tr style="color: chocolate;">
+                        <th>Components</th>
+                        <th>Rs. (Per month)</th>
+                    </tr>
+                    <tr>
+                        <th>Basic Salary</th>
+                        <td id="basicSal"></td>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Allowances</th>
+                    <tr>
+                        <th class="second-level-padding">House Rent Allowance</th>
+                        <td id="houseRentAllow"></td>
+                    </tr>
+                    <tr>
+                        <th class="second-level-padding">Travel Allowance</th>
+                        <td id="travelAllow"></td>
+                    </tr>
+                    <tr id="NArow">
+                        <th class="second-level-padding">Night Shift Allowance</th>
+                        <td id="nightShiftAllow"></td>
+                    </tr>
+                    <tr>
+                        <th class="second-level-padding">Special Allowance</th>
+                        <td id="specialAllow"></td>
+                    </tr>
+                    </tr>
+                    <tr style="color: chocolate;">
+                        <th>Monthly Gross Salary (A)</th>
+                        <td id="monthlyGrossSal"></td>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Other Benefits</th>
+                    <tr>
+                        <th class="second-level-padding" style="padding-left: 50px;">Company's PF Contribution</th>
+                        <td id="compPF"></td>
+                    </tr>
+                    <tr id="ESIrow">
+                        <th class="second-level-padding">Company's ESI Contribution</th>
+                        <td id="compESI"></td>
+                    </tr>
+                    <tr id="MIrow">
+                        <th class="second-level-padding">Monthly Performance Incentive</th>
+                        <td id="monthlyIncentive"></td>
+                    </tr>
+                    <tr>
+                        <th class="second-level-padding">Premium towards Medical and Accident Group Insurance</th>
+                        <td id="medicalInsur"></td>
+                    </tr>
+                    <tr>
+                        <th class="second-level-padding">Gratuity</th>
+                        <td id="gratuity"></td>
+                    </tr>
+                    </tr>
+                    <tr style="color: chocolate;">
+                        <th>Sub Total (B)</th>
+                        <td id="subtotal"></td>
+                    </tr>
+                    <tr style="color: chocolate;">
+                        <th>Monthly Cost to the Company CTC (A+B)</th>
+                        <td id="monthlyCTC"></td>
+                    </tr>
+                    <tr style="color: chocolate;">
+                        <th>Annual Cost to the Company CTC </th>
+                        <td id="annualCTC"></td>
+                        <input type="hidden" name="ctc" value="" id="ctc" />
+                    </tr>
+                </table>
+            </div>
+            <div class="center">
+                <button class="open-button" type="submit" id="myBtn" style="text-align: center; margin-top: 50px;">Invite</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+
+    $(document).ready(function () {
+
+        $('#monthly-gross-incentive-checkbox').click(function () {
+            if ($("input[type=checkbox]").is(
+                ":checked")) {
+                $(".mgs,.mgslabel").show();
+            }
+            else {
+                $(".mgs,.mgslabel").hide();
+            }
+        });
+
+        $(".mgs,.mgslabel").hide();
+        $("#NArow").hide();
+        $("#MIrow").hide();
+        $("#ESIrow").hide();
+    });
+    function myFunction() {
+
+
+        var mgs = document.getElementById('monthly-gross-salary').value;
+        var mpi = document.getElementById('monthly-gross-incentive').value;
+        var NA;
+        document.getElementById("salaryBreakup").style.display = "block";
+        var TA = 1600;
+        var medicalInsurance = 900;
+        var basic = Math.round(.5 * mgs);
+        var HRA = Math.round(.4 * basic);
+
+        $('#night-shift-allowance').change(function () {
+            $("#NArow").show();
+
+            NA = Math.round(.08 * mgs);
+            if (NA >= 2500) {
+                $("#nightShiftAllow").text(2500);
+                var SA = (mgs - (basic + HRA + TA + 2500));
+                $("#specialAllow").text(SA);
+            }
+            else {
+                $("#nightShiftAllow").text(NA);
+                var SA = (mgs - (basic + HRA + TA + NA));
+                $("#specialAllow").text(SA);
+            }
+        });
+
+        var ESI;
+        var SA = (mgs - (basic + HRA + TA));
+        $("#specialAllow").text(SA);
+        var PF = Math.round(.12 * basic);
+        var Gratuity = Math.round((15 / 26) * basic / 12);
+
+        if (mpi > 0 && mgs < 21000) {
+            $("#MIrow").show();
+            $("#ESIrow").show();
+            var ESI = Math.round(mgs * 3.25 / 100);
+            $("#compESI").text(ESI);
+            $("#monthlyIncentive").text(mpi);
+            var subtotal = PF + Gratuity + medicalInsurance + ESI + Number(mpi);
+        }
+
+        else if (mgs < 21000) {
+            $("#ESIrow").show();
+            ESI = Math.round(mgs * 3.25 / 100);
+            $("#compESI").text(ESI);
+            var subtotal = PF + Gratuity + medicalInsurance + ESI;
+        }
+        else if (mpi > 0) {
+            $("#MIrow").show();
+            var subtotal = PF + Gratuity + medicalInsurance + Number(mpi);
+            $("#monthlyIncentive").text(mpi);
+        }
+        else {
+            $("#ESIrow").hide();
+            var subtotal = PF + medicalInsurance + Gratuity;
+
+        }
+
+        var monthly = Number(subtotal) + Number(mgs);
+        var annual = monthly * 12;
+        //$("#myBtn").click(function () {
+        //    submitForm();
+        //});
+        //function submitForm() {
+
+        //    console.log("HiIn")
+        //    var details = "";
+
+        //    var form = document.getElementById("inviteForm");
+        //    var inp = form.getElementsByTagName("*");
+
+        //    var j = 0;
+        //    for (i = 0; i < inp.length; i++) {
+        //        if (typeof inp[i].name == 'string' && inp[i].name > '' && typeof inp[i].value == 'string') {
+        //            details += (inp[i].name + '=' + escape(inp[i].value) + '&');
+
+        //        }
+
+        //    }
+        //    details = details.substr(0, details.length - 1);
+        //    details += annual;
+
+
+        //    console.log(details);
+
+
+        //    var xhttp = new XMLHttpRequest();
+
+
+        //    xhttp.onreadystatechange = function () {
+        //        if (this.readyState == 4 && this.status == 200) {
+
+        //            // document.getElementById(1).onmouseover
+        //        }
+        //    }
+        //    var method;
+
+        //    method = "POST";
+        //    xhttp.open(method, "/ProspectiveEmployee/Invite", true);
+        //    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        //    xhttp.send(details);
+
+
+        //}
+        $("#basicSal").text(basic);
+        $("#houseRentAllow").text(HRA);
+        $("#travelAllow").text(TA);
+
+        $("#compPF").text(PF);
+        $("#medicalInsur").text(medicalInsurance);
+        $("#monthlyGrossSal").text(mgs);
+        $("#gratuity").text(Gratuity);
+        $("#subtotal").text(subtotal);
+        $("#monthlyCTC").text(monthly);
+        $("#annualCTC").text(annual);
+        document.getElementById("ctc").value = annual;
+
+
+
+        $("#myBtn").click(function () {
+            //---------------------------------------------------------------------
+            var prospectiveEmployee = new Object();
+            prospectiveEmployee.firstName = $("#fullname").val();
+            prospectiveEmployee.email = $("#pemail").val();
+            prospectiveEmployee.level = $('input[name=level]:checked', '#inviteForm').val();
+            prospectiveEmployee.role = $('#designation').val();
+            prospectiveEmployee.joiningDate = $("#joining-date").val();
+            prospectiveEmployee.reportingTime = $("#reporting-time").val();
+            prospectiveEmployee.approvedManager = $("#approved-manager").val();
+            prospectiveEmployee.reportingManager = $("#reporting-manager").val();
+            prospectiveEmployee.monthlyGrossSalary = $("#monthly-gross-salary").val();
+            prospectiveEmployee.monthlyIncentive = $("#monthly-gross-incentive").val();
+            prospectiveEmployee.nightShiftAllowance = $("#night-shift-allowance").val();
+            prospectiveEmployee.ctc = annual;
+            var salary = new Object();
+            salary.basicSalary = basic;
+            salary.houseRentAllowances = HRA;
+            salary.TravelAllowances = TA;
+            salary.nightShiftAllowances =NA;
+            salary.specialAllowances = SA;
+            salary.monthlyGrossSalary = mgs;
+            salary.companyPF = PF;
+            salary.ESI = ESI
+            salary.monthlyIncentive = mpi;
+            salary.medicalInsurance = medicalInsurance;
+            salary.gratuity = Gratuity;
+            salary.subTotal = subtotal;
+            salary.monthlyCTC = monthly;
+            salary.annualCTC = annual;
+            var data = {};
+            data.prospectiveEmployee = prospectiveEmployee;
+            data.salary = salary;
+            console.log(data.salary);
+            console.log(prospectiveEmployee);
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "/ProspectiveEmployee/Invite", // Controller/View
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json"
+
+                });
+
+
+            //---------------------------------------------------------------------
+        });
+
+
+
+
+
+    }
+
+
+    $(document).ready(function () {
+
+
+
+
+
+
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+
+        btn.onclick = function () {
+            if ($("#fullname").val() != '' && $("#pemail").val() != '' && $("#designation").val() != '' && $("#monthly-gross-salary").val() != '' && $("#monthly-gross-incentive").val() != '' && $("#joining-date").val() != '' && $("#approved-manager").val() != '' && $("#reporting-manager").val() != '') {
+                $('#role').val($("#designation").val());
+                $('#salary').val($("#monthly-gross-salary").val());
+                $('#joining-date1').val($("#joining-date").val());
+                $('#pemail1').val($("#pemail").val());
+                modal.style.display = "block";
+            }
+        }
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+    });
+
+
+</script>
+</html>

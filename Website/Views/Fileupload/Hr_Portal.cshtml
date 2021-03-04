@@ -1,0 +1,241 @@
+﻿@model  IEnumerable<JARVIS.Models.uploadDoc>
+
+@{
+    ViewBag.Title = "Hr_Portal";
+
+}
+
+
+<head>
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/4f3cef309e.js" crossorigin="anonymous"></script>
+    <style>
+
+
+        table th {
+            border: 2px solid black;
+            padding: 5px;
+            text-align: center;
+            color: black;
+        }
+
+
+        td {
+            border: 2px solid black;
+            text-align: center;
+            color: green;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        hr {
+            visibility: collapse;
+        }
+
+        #div1 {
+            float: right;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            function search() {
+                var search = $('#myInput');
+                search.val('');
+                search.focus();
+            }
+            Mousetrap.bind('alt+/', search);
+        });
+
+
+    </script>
+</head>
+<body style="background-color: #F8F4EE;">
+
+    <div style="padding-top:10%; padding-left:8%">
+        <h2>Documents uploaded by Employee</h2>
+
+        <div id="div1" style="padding-bottom:40px;">
+            <p><b>Search the details of employee here</b></p>
+            <input class="form-control" id="myInput" type="text" placeholder='Search ("Alt + /")'>
+        </div>
+
+
+        <table class="table table-striped" style="background-color:#C27B43;">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Created On</th>
+                    <th scope="col">Name</th>
+
+                    <th scope="col">AllFiles</th>
+                    <th scope="col">Marksheet</th>
+                    <th scope="col">Aadhar_card</th>
+                    <th scope="col">PAN_card</th>
+                    <th scope="col">Passport</th>
+                    <th scope="col">Bank_statement</th>
+                    <th scope="col">Revealing_letter</th>
+                    <th scope="col">Offer_letter</th>
+                    <th scope="col">EXP_certificate</th>
+                    <th scope="col">Latest_payslips</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Comments</th>
+
+                </tr>
+            </thead>
+            <br />
+            @foreach (var i in Model)
+            {
+                <tbody id="myTable">
+                    <tr>
+                        <td scope="row">@i.ID</td>
+                        <td><p>@i.CreatedOn</p></td>
+                        <td>@i.Name</td>
+
+                        @if (i.Allfiles != "null")
+                        {
+                            <td>
+                                <a href="~/uploadfiles/@i.Name/@i.Allfiles" target="_blank">View</a>
+                                <a href="#" download="~/uploadfiles/@i.Name/@i.Allfiles">download</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td><p>@i.Allfiles</p></td>
+                        }
+                        @if (i.Marksheet != "null" && i.Marksheet != "This File is in All File column(MainFile).")
+                        {
+                            <td>
+                                <a href="~/uploadfiles/@i.Name/@i.Marksheet" target="_blank">View</a>
+                                <a href="#" download="~/uploadfiles/@i.Name/@i.Marksheet">download</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td><p>@i.Marksheet</p></td>
+                        }
+                        @if (i.Aadhar_card != "null" && i.Aadhar_card != "This File is in All File column(MainFile).")
+                        {
+                            <td>
+                                <a href="~/uploadfiles/@i.Name/@i.Aadhar_card" target="_blank">View</a>
+                                <a href="#" download="~/uploadfiles/@i.Name/@i.Aadhar_card">download</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td><p>@i.Aadhar_card</p></td>
+                        }
+                        @if (i.PAN_card != "null" && i.PAN_card != "This File is in All File column(MainFile).")
+                        {
+                            <td>
+                                <a href="~/uploadfiles/@i.Name/@i.PAN_card" target="_blank">View</a>
+                                <a href="#" download="~/uploadfiles/@i.Name/@i.PAN_card">download</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td><p>@i.PAN_card</p></td>
+                        }
+                        @if (i.Passport != "null" && i.Passport != "This File is in All File column(MainFile).")
+                        {
+                            <td>
+                                <a href="~/uploadfiles/@i.Name/@i.Passport" target="_blank">View</a>
+                                <a href="#" download="~/uploadfiles/@i.Name/@i.Passport">download</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td><p>@i.Passport</p></td>
+                        }
+                        @if (i.Bank_stmt != "null" && i.Bank_stmt != "This File is in All File column(MainFile).")
+                        {
+                            <td>
+                                <a href="~/uploadfiles/@i.Name/@i.Bank_stmt" target="_blank">View</a>
+                                <a href="#" download="~/uploadfiles/@i.Name/@i.Bank_stmt">download</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td><p>@i.Passport</p></td>
+                        }
+                        @if (i.Revealing_letter != "null" && i.Revealing_letter != "This File is in All File column(MainFile).")
+                        {
+                            <td>
+                                <a href="~/uploadfiles/@i.Name/@i.Revealing_letter" target="_blank">View</a>
+                                <a href="#" download="~/uploadfiles/@i.Name/@i.Revealing_letter">download</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td><p>@i.Revealing_letter</p></td>
+                        }
+                        @if (i.Offer_letter != "null" && i.Offer_letter != "This File is in All File column(MainFile).")
+                        {
+                            <td>
+                                <a href="~/uploadfiles/@i.Name/@i.Offer_letter" target="_blank">View</a>
+                                <a href="#" download="~/uploadfiles/@i.Name/@i.Offer_letter">download</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td><p>@i.Offer_letter</p></td>
+                        }
+                        @if (i.Exp_certificate != "null" && i.Exp_certificate != "This File is in All File column(MainFile).")
+                        {
+                            <td>
+                                <a href="~/uploadfiles/@i.Name/@i.Exp_certificate" target="_blank">View</a>
+                                <a href="#" download="~/uploadfiles/@i.Name/@i.Exp_certificate">download</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td><p>@i.Exp_certificate</p></td>
+                        }
+                        @if (i.Latest_payslip != "null" && i.Latest_payslip != "This File is in All File column(MainFile).")
+                        {
+                            <td>
+                                <a href="~/uploadfiles/@i.Name/@i.Latest_payslip" target="_blank">View</a>
+                                <a href="#" download="~/uploadfiles/@i.Name/@i.Latest_payslip">download</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td><p>@i.Latest_payslip</p></td>
+                        }
+                        @if (i.Photo != "null" && i.Photo != "This File is in All File column(MainFile).")
+                        {
+                            <td>
+                                <a href="~/uploadfiles/@i.Name/@i.Photo" target="_blank">View</a>
+                                <a href="#" download="~/uploadfiles/@i.Name/@i.Photo">download</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td><p>@i.Photo</p></td>
+                        }
+                        <td><p>@i.Comments</p></td>
+
+
+
+
+                    </tr>
+
+                </tbody>
+            }
+        </table>
+    </div>
+</body>

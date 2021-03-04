@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "BankDetails";
+}
+
+@{
+    ViewBag.Title = "BankDetails";
+}
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+          rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/4f3cef309e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+
+    <style>
+        .row {
+            padding: 10px;
+            margin-left: 100px;
+        }
+
+        #emp_name {
+            margin-left: 150px;
+            margin-bottom: 20px;
+        }
+
+        h4 {
+            margin-bottom: 40px;
+            margin-left: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body style="background-color: #F8F4EE;">
+    <div class="container" style="padding-top:9%;margin-bottom:40px;width:100%;">
+        <h4> Bank Details</h4>
+
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="emp_name" required placeholder="Employee Name - Employee ID">
+        </div>
+        <div class="form-group row mb-2">
+            <div class="col-sm-3 ">
+                <label for="payment_mode"> Payment Mode</label>
+            </div>
+            <div class="col-sm-1">
+                <label for="colon"> :</label>
+            </div>
+            <div class="col-sm-2" style="margin-left: -14px;">
+                <div class="form-check">
+                    <input type="radio" id="bank_mode" name="pay_mode" required>
+                    <label for="bank_mode" class="form-check-label"> Bank</label>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-check" style="margin-left: -20px;">
+                    <input type="radio" id="cheque_mode" name="pay_mode" required>
+                    <label for="cheque_mode" class="form-check-label"> Cheque</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-3">
+                <label for="bank"> Bank</label>
+            </div>
+            <div class="col-sm-1">
+                <label for="colon"> :</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="bank" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-3">
+                <label for="account_no"> Bank Account Number</label>
+            </div>
+            <div class="col-sm-1">
+                <label for="colon"> :</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="account_no" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-3">
+                <label for="name_bank"> Employee Name in Bank</label>
+            </div>
+            <div class="col-sm-1">
+                <label for="colon"> :</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="name_bank" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-3">
+                <label for="bank_details"> Bank Branch Details</label>
+            </div>
+            <div class="col-sm-1">
+                <label for="colon"> :</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="bank_deatils" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-3">
+                <label for="ifsc"> IFSC Code</label>
+            </div>
+            <div class="col-sm-1">
+                <label for="colon"> :</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="ifsc" required>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,136 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://icons.getbootstrap.com/" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
+    <script src="https://kit.fontawesome.com/99c88c9b62.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/Content/wizard.css" />
+
+    @*<script src="/template/web/js/jquery-2.2.3.min.js"></script>
+        <script src="~/Scripts/toastr.js"></script>*@
+    @*@section Scripts{
+        <script>
+
+            //toastr.warning('page is loading');
+            alert("Hey!!...its loading");
+
+        </script>
+        }*@
+    @section Scripts{
+        <script>
+            $(document).ready(function () {
+                $('.abc').click(function () {
+                    alert("Hey!!...its loading");
+                });
+            })
+        </script>
+    }
+
+    @*<script>
+
+            function Update() {
+                toastr.success("Hey!!...its loading");
+            }
+        </script>*@
+
+</head>
+<body>
+
+    <div class="nav" style=" background-color: white;">
+        <div class="top-nav d-flex justify-content-between">
+            <img src="~/Content/Starmark_Logo_252X70.png" style="        width: auto;
+        height: 60px;
+        padding-top: 0px;
+        margin-top: 15px;
+">
+
+            <ul id="progressbar">
+                <li>
+                    <button class="b1 active"><i class="far fa-id-card" style="font-size: 20px"></i></button>
+                    <div id="before">
+                        <div id="bar" class="before-bar" style="height:4px; width:120px;"></div>
+                    </div>Details
+                </li>
+                <li>
+                    <button class="b1"><i class="fas fa-user-graduate" style="font-size: 20px"></i></button>
+                    <div id="before">
+                        <div id="bar" class="before-bar" style="height:4px; width: 100px;"></div>
+                    </div>Education & Experience
+                </li>
+                <li>
+                    <button class="b1"><i class="fas fa-file-upload" style="font-size: 20px"></i></button>
+                    <div id="before">
+                        <div id="bar" class="before-bar" style="height:4px; width:100px;"></div>
+                    </div>Upload Documents
+                </li>
+                <li>
+                    <button class="b1"><i class="fas fa-file-signature" style="font-size: 20px"></i></button>
+                    <div id="before">
+                        <div id="bar4" class="before-bar" style="height:4px; width:100px;"></div>
+                    </div>Sign Documents
+                </li>
+                <li>
+                    <button class="b1 last"><i class="far fa-check-circle" style="font-size: 20px"></i></button>
+                    <div id="before">
+                        <div id="bar" style="height:4px; width:100px;"></div>
+                    </div>Finish
+                </li>
+            </ul>
+
+            <img src="~/Content/starmark20.PNG" style="height: 70px; width: 70px;">
+        </div>
+        <div id="grad"></div>
+    </div>
+    <!--nav end-->
+
+    <div>
+        <div class="row">
+            <div class="col-3 sidenavb" style="padding-top: 10px; padding-left: 30px;">
+                <p>Personal Details </p>
+                <a href="@Url.Action("BasicInformation","ProspectiveEmployee")">> Basic Information</a>
+                <a href="@Url.Action("BasicInformation","ProspectiveEmployee")">> Current Address</a>
+                <a href="@Url.Action("BasicInformation","ProspectiveEmployee")">> Permanent Address</a>
+                <a href="@Url.Action("BasicInformation","ProspectiveEmployee")">> Bank Details</a>
+                <a href="@Url.Action("BasicInformation","ProspectiveEmployee")">> Dependent Details</a><br>
+                <p>Education and Experience</p>
+                <a href="@Url.Action("EducationExperience","ProspectiveEmployee")">> Education Details</a>
+                <a href="@Url.Action("EducationExperience","ProspectiveEmployee")">> Experience Details</a><br>
+                <p><a href="@Url.Action("upload","fileupload")"> Upload Documents</a></p>
+                <p><a href="sign.html">Sign Documents</a></p>
+            </div>
+            <div class="container" style="padding-left:30%; padding-bottom:30%;">
+                @using (Html.BeginForm("SignAgreements", "Sign", FormMethod.Post))
+                {
+                    <label for="fname">Name:</label><br>
+                    <input type="text" id="fname" name="name" value=""><br>
+                    <label for="mailid">Email Address:</label><br>
+                    <input type="text" id="mailid" name="email" value=""><br><br>
+                    <label for="level">Choose a level</label>
+                    <select name="level" id="level">
+                        <option value="fresher">Fresher</option>
+                        <option value="experience">Experience</option>
+                    </select>
+
+                    <a href="@Url.Action("SignAgreements","Sign")">
+                        <input type="submit" value="Submit" class="abc">
+                    </a>
+
+                }
+                
+                <script>
+                 
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

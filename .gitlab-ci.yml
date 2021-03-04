@@ -1,0 +1,33 @@
+stages:
+    - build
+    - deploy
+
+build_job:
+    stage: build
+    script:
+        - 'Import-Module WebAdministration'
+       
+   
+        - 'C:\Tools\Nuget\nuget.exe restore JARVIS.sln '
+        - 'xcopy /y /e /s "packages" "Website\packages\"'
+#        - 'C:\Tools\Nuget\nuget.exe restore JARVIS.sln -PackagesDirectory Website\packages'
+#        - 'xcopy /h /e /c /i "Website\packages" "..\packages"'
+        - 'msbuild JARVIS.sln /p:OutputPath="D:\BuildsJarvis"'
+
+deploy_job:
+    stage: deploy
+    script:
+        #- 'Import-Module WebAdministration'
+    
+       # - '$siteName = "hrportalqc.vitalaxis.com"'
+      #  - '$serverName = "VMWEB02"'
+       # - '$block = {Stop-WebSite $args[0]};'
+      #  - '$block2 = {Stop-WebAppPool $args[0]}'  
+       # - '$session = New-PSSession -ComputerName $serverName'
+       # - 'Invoke-Command -Session $session -ScriptBlock $block -ArgumentList $siteName' 
+       # - 'Invoke-Command -Session $session -ScriptBlock $block2 -ArgumentList $siteName'
+       # - 'Stop-WebSite "hrportalqc.vitalaxis.com"'
+        - 'xcopy D:\BuildsJarvis\_PublishedWebsites\JARVIS\*.* \\192.168.168.28\cepheusweb\Website-IIS\Cepheus_HRPortal_QC /y /e /s'
+       # - 'Start-WebSite "hrportalqc.vitalaxis.com"'
+    dependencies:
+        - build_job

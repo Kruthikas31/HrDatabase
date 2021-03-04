@@ -1,0 +1,79 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+}
+
+.vanta-canvas {
+    width: 100%;
+    height: 1000vh;
+    padding: 0;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+}
+.form {
+    color: #434343;
+    border-radius: 25px;
+    margin-bottom: -131px;
+    margin-top: -66px;
+    margin-left: 60%;
+    margin-right: 14%;
+    background: #fff;
+    border: 1px solid #f3f3f3;
+    padding: 3%;
+    box-shadow: 10px 10px 22px grey;
+    height: 50%;
+    background-color: #e1d6d78a;
+}
+
+.login-form {
+    width: 300px;
+    margin-top: -10px;
+    margin-left: 63%;
+}
+
+.modal-title {
+    text-align: center;
+    font-size: 32px;
+    line-height: 2.3 !important;
+}
+
+.fas {
+    align-items: center !important;
+    font-size: 60px;
+    color: #337ab7
+}
+
+.test {
+    padding-left: 100px;
+    font-size: 70px;
+    padding-top: 70px;
+    width: 675px;
+    line-height: 1.2rem !important;
+}
+
+.login {
+    padding-top: 128px;
+    padding-left: 227px;
+    position: relative;
+}
+
+#heading {
+    font-size: 70px !important;
+    font-weight: 80 !important;
+    font-family: Arial, Helvetica, sans-serif;
+    /*background: linear-gradient(to right, #F4862c, #EC1450, #8D227E, #6E2A8F);*/
+    background: -webkit-linear-gradient( #F4862c, #EC1450, #8D227E, #6E2A8F);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#demo {
+    font-size: 60px;
+}

@@ -1,0 +1,379 @@
+﻿@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/4f3cef309e.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="~/Content/Admin.css" type="text/css" />
+    <link rel="icon" href="~/Content/st.JPG">
+    <title>Admin Portal</title>
+
+    <style>
+        .button {
+            text-align: center;
+            padding-top: 200px;
+        }
+
+        .table {
+            padding-left: 10px;
+            padding-top: 90px;
+        }
+
+        .header {
+            width: auto;
+            height: 100px;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+
+        #save {
+            float: right;
+        }
+    </style>
+    <script>
+        var action = "";
+
+        var str = '<td><input type="checkbox" class="form-check-input checkbox" id="exampleCheck1" name="checkbox1"  style="margin-left:auto;margin-right:auto"/></td>';
+        $(document).ready(function () {
+
+            var Adminedit = new Object();
+            $("#add").click(function () {
+                action = "save";
+            });
+            $('#save').click(function () {
+
+                if ($("#dependentTable tbody").length == 0) {
+                    $("#dependentTable").append("<tbody></tbody>");
+                }
+
+                if ($("input[type=checkbox]").is(":checked")) {
+                    var row = $("input[type=checkbox]:checked").closest("tr");
+                    $(row).find("td:eq(1)").text($("#empid").val());
+                    $(row).find("td:eq(2)").text($("#name").val());
+                    $(row).find("td:eq(3)").text($("#jobrole").val());
+
+
+                }
+                else {
+                    $("#dependentTable tbody").append("<tr>" + str +
+                        "<td>" + $("#empid").val() + "</td>" +
+                        "<td>" + $("#name").val() + "</td>" +
+                        "<td>" + $("#jobrole").val() + "</td>" +
+                        "</tr>");
+                }
+
+                submitForm();
+                formClear1();
+
+            });
+            function formClear1() {
+                $("#empid").val("");
+                $("#name").val("");
+                $("#jobrole").val("");
+
+            }
+
+            $("#editrole").click(function () {
+                console.log("edit click")
+
+                $("#dependentTable input[type=checkbox]").change(function () {
+                    var len = $("#dependentTable input:checked").length;
+
+                    $("#editrole").attr("disabled", len > 1)
+
+
+                });
+
+                var values = new Array();
+                $.each($("input[type=checkbox]:checked").closest("td").siblings("td"),
+                    function () {
+                        values.push($(this).text());
+                    });
+                $("#myModal").ready(function () {
+                    $("#empid").val(values[0]);
+                    $("#name").val(values[1]);
+                    $("#jobrole").val(values[2]);
+
+                    //Adminedit.id = values[0];
+                    //Adminedit.ADCredential = values[1];
+                    //Adminedit.Role = values[2];
+
+                    action = "edit";
+                    submitForm();
+
+                });
+
+            });
+
+
+            function getSelectedRows() {
+                var selectedRows = []
+                $('input[type=checkbox]').each(function () {
+                    if ($(this).is(":checked")) {
+                        selectedRows.push($(this));
+                    }
+                });
+                return selectedRows;
+            }
+
+            $('#delete').click(function () {
+                console.log("onclick");
+                action = "del";
+                submitForm();
+                deleteRows();
+
+            });
+            function deleteRows() {
+                var selectedRows = getSelectedRows();
+
+                for (var i = 0; i < selectedRows.length; i++) {
+                    $(selectedRows[i]).parent().parent().remove();
+                }
+            }
+
+
+            function submitForm() {
+                if (action == "save") {
+                    console.log("In save")
+                    var Admin = new Object();
+                    Admin.id = document.getElementById('empid').value;
+                    Admin.ADCredential = $("#name").val();
+                    Admin.Role = $("#jobrole").val();
+                    $.ajax(
+                        {
+                            type: "POST", //HTTP POST Method
+                            url: "/Admin/Insert", // Controller/View
+                            data: JSON.stringify(Admin),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json"
+
+                        });
+                }
+                if (action == "edit") {
+
+                    // console.log("In edit")
+                    var Admin = new Object();
+                    Admin.id = document.getElementById('empid').value;
+                    Admin.ADCredential = $("#name").val()
+                    Admin.Role = $("#jobrole").val();
+                    $.ajax(
+                        {
+                            type: "POST", //HTTP POST Method
+                            url: "/Admin/Update", // Controller/View
+                            data: JSON.stringify(Admin),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json"
+
+                        });
+                }
+                else if (action == "del") {
+                    console.log("In delete")
+                    var arr = [];
+                    var arr_string = "";
+                    $("#itemlist tr td .temp").each(function (index, val) {
+                        // debugger
+                        var checkid = $(val).attr("id");
+                        var split_id = checkid.split("_");
+                        var uncheck = split_id[2];
+                        var ischecked = $("#batch_check_" + uncheck).is(":checked", true);
+                        if (ischecked) {
+                            arr.push(uncheck);
+
+                        }
+                    })
+                    arr_string = arr.toString();
+
+                    $.ajax(
+                        {
+                            type: "POST", //HTTP POST Method
+                            url: "/Admin/Delete", // Controller/View
+                            data: { id: arr_string }
+                        });
+                }
+            }
+
+            $('#delete').click(function () {
+                $('#myModaldelete').modal('hide');
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="head">
+        <nav class="navbar navbar-expand-sm bg-light navbar-lg">
+            <img class="logo" src="~/Content/starmark.png">
+            <div id="lgout">
+                <button class="fa fa-bell-o fa-2x bell " aria-hidden="true"></button>
+            </div>
+            <div class="dropdown">
+                <button class="profile"><img class="avatar" src="~/Content/profile.png"></button>
+                <div class="dropdown-menu ">
+                    <a class="dropdown-item" href="#">Edit Profile</a>
+                    <a class="dropdown-item disabled" href="#">Change Password</a>
+                    <a class="dropdown-item disabled" href="#">Change Theme</a>
+                    <a class="dropdown-item" href="@Url.Action("Logout","Home")">Logout</a>
+                </div>
+            </div>
+        </nav>
+        <div class="gradient" id="grad"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <p id="sidebar">
+            </p>
+        </div>
+
+        <h3>Admin Portal</h3>
+
+
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Admin Portal</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+
+                        <div class="py-2">
+                            <label for="empid" style="float: left;">EmployeeId</label>
+                            <input type="text" value="" class="form-control" id="empid" required>
+                        </div>
+                        <div class="py-2">
+                            <label for="name" style="float: left;">ADCredential</label>
+                            <input type="text" value="" class="form-control" id="name" required>
+                        </div>
+                        <div class="py-2">
+                            <label for="jobrole" style="float: left;">Role</label>
+                            <select class="custom-select d-block w-100" id="jobrole" placeholder="" required>
+                                <option id="jobrole" value="choose">Choose</option>
+                                <option id="jobrole" value="Admin">Admin</option>
+                                <option id="jobrole" value="HR">HR</option>
+                                <option id="jobrole" value="Manager">Manager</option>
+                                <option id="jobrole" value="employee">
+                                    Employee
+                                </option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-success" id="save" data-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row " id="button">
+                <div class="col-md-4">
+                    <button type="button" id="add" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
+                        Add
+                        Role
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary" id="editrole" data-toggle="modal" data-dismiss="modal"
+                            data-target="#myModal">
+                        Edit Role
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-dismiss="modal"
+                            data-target="#myModaldelete">
+                        Delete Role
+                    </button>
+                </div>
+
+                @*-----------------------delete modal------------*@
+                <div id="myModaldelete" class="modal fade">
+                    <div class="modal-dialog modal-confirm">
+                        <div class="modal-content">
+                            <div class="modal-header flex-column">
+                                <div class="icon-box">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </div>
+                                <h4 class="modal-title w-100">Are you sure?</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Do you really want to delete these records?</p>
+                            </div>
+                            <div class="modal-footer justify-content-center" id="frmStudent">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-danger" id="delete">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*-----------------------delete modal------------*@
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table" id="tab">
+                        <table id="dependentTable" class="table table-striped table-hover table-bordered ">
+                            <thead style="background-color: #C27B43;">
+                                <tr>
+                                    <th>Select</th>
+                                    <th>EmployeeId</th>
+                                    <th>ADCredential</th>
+                                    <th>Role</th>
+                                </tr>
+                            </thead>
+                            <tbody id="itemlist">
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td><input type="checkbox" class="temp" id="batch_check_@item.id" /></td>
+                                        <td>@item.id</td>
+                                        <td>@item.ADCredential</td>
+                                        <td>@item.Role</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="foot">
+                <ol>
+                    <li><a><button id="support">Get Support</button></a></li>
+                    <li><a href="mailto:mrsagar2006@gmail.com?Subject=abc issue" target="_top">Send Feedback</a></li>
+                    <li>Terms of Use</li>
+                    <li>FAQ</li>
+                </ol>
+
+            </div>
+            <center> <p>&copy Starmark Software Pvt.Ltd.2021</p></center>
+        </div>
+</body>
+@if (ViewBag.Message != null)
+{
+    <script>
+        alert("User Role added successfully");
+    </script>
+}
+@if (ViewBag.delete != null)
+{
+    <script>
+        alert("User Role deleted successfully");
+    </script>
+}
+</html>

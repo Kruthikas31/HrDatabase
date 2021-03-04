@@ -1,0 +1,204 @@
+﻿
+#grad {
+	height: 10px;
+	width: 100%;
+	position: fixed;
+	background-image: linear-gradient(to right, #F4862c, #EC1450, #8D227E, #6E2A8F);
+}
+
+.logo {
+	float: right;
+}
+
+td {
+	padding-right: 90px;
+	padding-top: 150px;
+}
+
+.tab {
+	margin: auto;
+	padding: 50px;
+	width: 80%;
+}
+/*#searchs {
+	padding-top: 15px;
+	padding-left: 200px;
+}*/
+
+#search-input {
+	border-radius: 25px;
+	padding: 10px;
+	box-shadow: 0px 2px 5px 2px rgb(71, 68, 68);
+	font-family: Arial, FontAwesome;
+	padding: 20px;
+}
+
+.button {
+	border: 1px solid;
+	background-color: white;
+	opacity: 1;
+	box-shadow: 10px 0px 15px 5px grey;
+	box-sizing: border-box;
+	width: 130px;
+	height: 110px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+}
+
+.button1 {
+	border-radius: 12px;
+}
+
+
+
+#model {
+	padding-top: 50px;
+}
+
+#models {
+	padding-left: 600px;
+	padding-top: 150px;
+}
+
+.container {
+	padding-top: 60px;
+}
+
+.icon {
+	color: rgb(0, 110, 255);
+}
+
+.icon1 {
+	color: brown;
+}
+
+.icon2 {
+	color: chartreuse;
+}
+
+.icon3 {
+	color: rgba(121, 121, 7, 0.801);
+}
+
+.icon4 {
+	color: blueviolet;
+}
+
+.icon5 {
+	color: skyblue;
+}
+
+.foot {
+	background-color: #EEE2CB;
+	height: 30px;
+	z-index: -1;
+	width: 100%;
+}
+/* .footer {
+	padding-top: 10px;
+	width: 100%;
+
+} */
+#bells {
+	padding-left: 150px;
+}
+
+ol {
+	list-style: none;
+}
+
+li {
+	float: right;
+	padding-left: 15px;
+}
+
+#support {
+	border: 1px solid;
+	background-color: #EEE2CB;
+	border-radius: 10px;
+}
+
+/*p {
+    text-align: center;
+    padding-left: 230px;
+}*/
+
+a {
+	padding-right: 20px;
+}
+
+#head {
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+}
+
+
+
+.bell {
+	border: none;
+}
+
+#lgout {
+	float: right;
+	padding-left: 20%;
+}
+
+
+/* .sidenav .bg {
+	background-image: url('back\ .jpeg');
+	position: fixed;
+	margin-top: 104px;
+	width: 15%;
+	height: 100%;
+	
+	text-align: center;
+	z-index:1;
+} */
+
+
+
+.sea {
+	padding-left: 350px;
+}
+
+.avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+.dropdown:hover > .dropdown-menu {
+	display: block;
+}
+
+.dropdown > .dropdown-toggle:active {
+	pointer-events: none;
+}
+
+button {
+	border: none;
+	background: none;
+}
+
+#sidebar {
+	height: 100%;
+	width: 15%;
+	background-image: linear-gradient(180deg, #BB4400,#bb7007, #BB4400);
+	position: fixed;
+	float: left;
+}
+
+
+.dropdown a {
+	font-size: 16px;
+	color: #b46a30;
+}
+
+
+.dropdown {
+	margin-right: 90px;
+}

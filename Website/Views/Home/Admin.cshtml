@@ -1,0 +1,175 @@
+﻿
+
+
+@model JARVIS.Models.Admin
+@{
+    Layout = null;
+}
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="icon" href="~/Content/st.JPG">
+    <link rel="stylesheet" href="~/Content/Admin.css" type="text/css" />
+    <title>Admin Portal</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var now = new Date();
+            var hours = now.getHours();
+            var msg;
+
+            if (hours < 12) msg = "Good Morning!"+"@Session["data"]";
+            else if (hours < 18) msg = "Good Afternoon!  "+"@Session["data"]";
+          else msg = "Good Evening!"+"@Session["data"]";
+            $('#lblGreetings').html('<p>'+ msg + '</p>');
+        });
+
+
+
+    </script>
+
+</head>
+
+<body>
+    @*<div>
+        <div class="header">
+            <img src="~/Content/Starmark_Logo_252X70.png" id="img">
+            <h2 id="lblGreetings"> msg + Welcome @Session["data"]</h2>
+            <hr>
+
+        </div>*@
+    <div class="header" id="head">
+        <nav class="navbar navbar-expand-sm bg-light navbar-lg">
+            <img class="logo" src="~/Content/starmark.png">
+            @*<h4 id="lblGreetings"> msg + Welcome @Session["data"]</h4>*@
+            @*<span>
+                    <button class="fa fa-bell-o fa-2x bell" aria-hidden="true"></button>
+
+                    <button class="fa fa-power-off fa-2x logout" aria-hidden="true" onclick="window.location='@Url.Action("Logout","Home")'"></button>
+                </span>*@
+        </nav>
+        <div class="gradient" id="grad"></div>
+    </div>
+    <div class="sidenav">
+        <div class="bg">
+        </div>
+    </div>
+    <div class="container" style="width:900px;">
+        <div class="container">
+            @using (Html.BeginForm("Admin", "Home", FormMethod.Post))
+            {
+                <div id="details">
+                    <h2 id="admin">Admin Portal</h2>
+                    <div class="row mt-5">
+                        <div class="col-md-4">
+                            <label for="empid" class="col-md-4">Emp_id:</label>
+                        </div>
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Emp_id, new { htmlAttributes = new { @class = "form-control " } })
+
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <label for="name">Emp_name:</label>
+                        </div>
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.AD_Credential, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <label for="name">Job_Role:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select name="Role" class="custom-select d-block form-control" value=@Html.DisplayFor( model => model.Role) id="jobrole" required>
+                                <option name="Role" value=@Html.DisplayFor( model => model.Role ) selected>Choose...</option>
+                                <option>Admin</option>
+                                <option>Manager</option>
+                                <option>HR</option>
+                                <option>Employee</option>
+                            </select>
+                        </div>
+                    </div>
+                    @*<div class="row mt-4">
+                        <div class="col-md-4">
+                            <label for="name">Password(Only for New User):</label>
+                        </div>
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>*@
+
+                    <br />
+                    <br />
+                    <div class="button">
+                        <input type="submit" class="btn btn-success" id="Add" value="Add Role">
+                    </div>
+                </div>
+            }
+
+
+
+
+
+
+            <div id="hr" style="display:none;">
+                <div class="header">
+                    <img src="~/Content/Starmark_Logo_252X70.png" id="img">
+                </div>
+                <hr />
+                <center><h3 id="lblGreetings">  @Session["data"] (@Session["role"])!!!  Welcome to Starmark</h3></center>
+            </div>
+            <div id="emp" style="display:none;">
+                <div class="header">
+                    <img src="~/Content/Starmark_Logo_252X70.png" id="img">
+                </div>
+                <hr />
+                <center> <h3>@Session["data"] !!! Welcome to starmark</h3></center>
+            </div>
+</body>
+@*@if (ViewBag.admin != null)
+    {
+        <script>
+            $('#admin').css("display", "block");
+        </script>
+    }
+    @if (ViewBag.hr != null)
+    {
+        <script>
+            $('#hr').css("display", "block");
+        </script>
+    }
+    @if (ViewBag.emp != null)
+    {
+        <script>
+            $('#emp').css("display", "block");
+        </script>
+    }
+    @if (ViewBag.message != null)
+    {
+        <script>
+            alert("User Role added successfully");
+        </script>
+    }*@
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

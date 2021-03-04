@@ -1,0 +1,106 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/4f3cef309e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+
+    <style>
+        table thead tr th {
+            color: white;
+        }
+
+        table {
+            margin-top: 6%;
+        }
+
+        thead {
+            background-color: #C27B43;
+        }
+
+        body {
+            background-color: #F8F4EE;
+        }
+
+        label {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 30px;
+            margin-bottom: 1%;
+        }
+
+        .mar {
+            margin-left: 15%;
+        }
+
+        .mar1 {
+            margin-left: 16%;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container" style="padding-top:9%;">
+        <label>Add Prospective Employee</label>
+        @using (Html.BeginForm("Invite", "ProspectiveEmployee", FormMethod.Get))
+        {
+            <div class="container" style="margin-left:10%;">
+                <center><button type="submit" class="btn btn-warning" id="nmt">Add</button></center>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Full Name</th>
+                            <th>Email ID</th>
+                            <th>Invited</th>
+                            <th>Opened Email</th>
+                            <th>Submited</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemlist">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.id</td>
+                                <td>@(item.fname+" "+item.mname+" "+item.lname)</td>
+                                <td>@item.email</td>
+
+                                @if (@item.status == "Opened")
+                                {
+                                    <td><span class="material-icons text-success mar">done</span></td>
+                                    <td><span class="material-icons text-success mar">done</span></td>
+                                    <td><span class="mar1">--</span></td>
+                                }
+                                @if (@item.status == "Notinvited")
+                                {
+                                    <td><span class="mar1">--</span></td>
+                                    <td><span class="mar1">--</span></td>
+                                    <td><span class="mar1">--</span></td>
+                                }
+                                @if (@item.status == "Invited")
+                                {
+                                    <td><span class="material-icons text-success mar">done</span></td>
+                                    <td><span class="mar1">--</span></td>
+                                    <td><span class="mar1">--</span></td>
+                                }
+                                @if (@item.status == "Uploaded" || @item.status == "Approved" || @item.status == "Rejected" || @item.status == "Validated")
+                                {
+                                    <td><span class="material-icons text-success mar">done</span></td>
+                                    <td><span class="material-icons text-success mar">done</span></td>
+                                    <td><span class="material-icons text-success mar">done</span></td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        }
+    </div>
+</body>
+</html>

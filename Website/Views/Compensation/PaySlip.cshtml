@@ -1,0 +1,257 @@
+﻿
+@{
+    ViewBag.Title = "Payslip";
+}
+
+@{
+    ViewBag.Title = "Payslip";
+}
+
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+          rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/4f3cef309e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+
+    <style>
+        h4 {
+            margin-bottom: 40px;
+            margin-left: 40px;
+            margin-top: 20px;
+        }
+
+        .row {
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+
+        td, th {
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        .table-bordered {
+            border: 1px solid black !important;
+        }
+
+        table, th, td {
+            border: 0;
+            padding-left: 100px;
+        }
+
+        #bt_Download {
+            /* background-color: #EE9345 47% ; */
+            /* background-image: linear-gradient(); */
+            border-radius: 20px;
+            color: white;
+            height: 35px;
+            font-size: 15px;
+            padding-bottom: 3px;
+            padding-top: 2px;
+            width: 120px;
+            border: none;
+            outline: none;
+            background: linear-gradient(#26E426, #0B420B);
+        }
+    </style>
+</head>
+<body style="background-color: #F8F4EE;">
+    <div class="container" style="padding-top:9%;margin-bottom:40px;width:100%;">
+        <h4>Payslip</h4>
+
+        <div class="row">
+            <div class="col-sm-3">
+                Payslip for the month of:
+            </div>
+            <div class="col-sm-2" style="margin-left: -50px;">
+                <select class="custom-select d-block w-100" id="payslipMonth" required>
+                    <option value="Jan2021" id="payslipMonth">January 2021</option>
+                    <option value="Dec2020" id="payslipMonth">December 2020</option>
+                </select>
+            </div>
+            <div class="col-sm-1">
+                <button type="button" id="bt_Download">Download PDF</button>
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
+            <div class="table1">
+                <table style="margin: auto;float:left">
+                    <tr>
+                        <th>Employee ID</th>
+                        <td>:</td>
+                        <td id="empID"></td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>:</td>
+                        <td id="empName"></td>
+                    </tr>
+                    <tr>
+                        <th>Designation</th>
+                        <td>:</td>
+                        <td id="designation"></td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td>:</td>
+                        <td id="gender"></td>
+                    </tr>
+                    <tr>
+                        <th>Date of Birth</th>
+                        <td>:</td>
+                        <td id="empdob"></td>
+                    </tr>
+                    <tr>
+                        <th>Date of Joining</th>
+                        <td>:</td>
+                        <td id="empdoj"></td>
+                    </tr>
+                    </tr>
+                    <tr>
+                        <th>Attendance:Base, Elig</th>
+                        <td>:</td>
+                        <td id="attendance"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="table2">
+                <table style="margin: auto;">
+                    <tr>
+                        <th>Department</th>
+                        <td>:</td>
+                        <td id="department"></td>
+                    </tr>
+                    <tr>
+                        <th>Bank</th>
+                        <td>:</td>
+                        <td id="bank"></td>
+                    </tr>
+                    <tr>
+                        <th>Bank A/C No.</th>
+                        <td>:</td>
+                        <td id="bankAccntNo"></td>
+                    </tr>
+                    <tr>
+                        <th>Location</th>
+                        <td>:</td>
+                        <td id="location"></td>
+                    </tr>
+                    <tr>
+                        <th>PAN No.</th>
+                        <td>:</td>
+                        <td id="PAN"></td>
+                    </tr>
+                    <tr>
+                        <th>UAN</th>
+                        <td>:</td>
+                        <td id="UAN"></td>
+                    </tr>
+                    </tr>
+                    <tr>
+                        <th>ESI No.</th>
+                        <td>:</td>
+                        <td id="ESI"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <table class=" table table-bordered" style="margin-top: 30px;">
+                <thead style="background-color:#C27B43 ;">
+                <th>Earnings</th>
+                <th>Fixed Amount(&#8377)</th>
+                <th>Current Month(&#8377)</th>
+                <th>Year to Date(&#8377)</th>
+                <th>Deductions</th>
+                <th>Current Month(&#8377)</th>
+                <th>Year to Date(&#8377)</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Basic</strong></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong>Provident Fund</strong></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>House Rent Allowance</strong></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong>Professional Tax</strong> </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transport Allowance</strong></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bonus</strong> </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Other Earnings</strong></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Allowance</strong> </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total Earnings</strong> </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><strong>Total Deductions</strong> </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"></td>
+                        <td><strong>Net Salary</strong> </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>
+
